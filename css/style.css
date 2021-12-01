@@ -79,6 +79,18 @@ nav ul li a:hover {
   color: #b0cedf;
 }
 
+nav ul li a.curriculo {
+  box-sizing: content-box;
+  background-color: #fff;
+  padding: 5px 15px;
+  margin: 10px;
+}
+
+nav ul li a.curriculo:hover {
+  background: #1e5373;
+  color: #b0cedf;
+}
+
 /* Fim do cabeçalho e navbar*/
 
 /* Footer */
@@ -325,6 +337,20 @@ article p {
 /* Fim estilos página inicial */
 /*----------------------------*/
 
+a.curriculo-back {
+  text-decoration: none;
+  text-align: center;
+  align-self: center;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 15px;
+  background: #336988;
+  color: #fff;
+  width: 50%;
+  min-width: 150px;
+  border-radius: 30px;
+}
+
 section.conteudo {
   width: 100%;
   flex-direction: column;
@@ -465,4 +491,27 @@ span.flex-container-center {
   text-decoration: none;
   color: #336988;
   margin-left: 10px;
+}
+
+section.conteudo h3.flex-container-center {
+  font-size: 40px;
+}
+
+.back-home {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #1e5373;
+  align-self: center;
+  font-size: 15px;
+}
+
+.back-home i {
+  text-align: center;
+  align-self: center;
+  font-size: 60px;
+  color: #fff;
+  background-color: #336988;
+  border-radius: 50%;
+  padding: 10px;
 }

@@ -54,7 +54,7 @@
   }
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 620px) {
   body {
     min-width: 320px;
   }
