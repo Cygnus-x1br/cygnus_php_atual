@@ -80,12 +80,24 @@
           value="https://cygnusrh.com.br/form_submit/sucesso.html"
         />
         <input type="hidden" name="_captcha" value="false" />
+        <input
+          type="text"
+          name="empresa"
+          placeholder="Digite o nome da empresa"
+          required
+        />
         <input type="text" name="name" placeholder="Digite seu nome" required />
         <input
           type="email"
           name="email"
           placeholder="Digite seu e-mail"
           required
+        />
+        <input
+          type="tel"
+          name="telefone"
+          placeholder="Digite um telefone para contato"
+          pattern="[0-9]{2}-[0-9]{5}-[0-9]{4}"
         />
         <textarea
           placeholder="Digite sua mensagem"
