@@ -123,4 +123,9 @@
   .flex-container-center {
     text-align: center;
   }
+  nav ul li a.curriculo {
+    margin: 25px 50px;
+    padding: 20px;
+    border-radius: 25px;
+  }
 }
