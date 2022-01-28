@@ -102,6 +102,10 @@
     max-height: 100%;
   }
 
+  .box-vagas article {
+    min-width: 300px;
+  }
+
   .container aside {
     max-width: 100%;
     justify-content: space-around;
