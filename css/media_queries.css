@@ -5,9 +5,12 @@
   .box-vagas {
     flex-direction: column;
     justify-content: flex-end;
-
     max-height: 100%;
     max-width: 450px;
+  }
+
+  .box-vagas article {
+    width: 100%;
   }
   article.vagas-destaque {
     max-height: 100%;
