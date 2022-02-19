@@ -1,0 +1,99 @@
+<div class="container">
+  <section class="destaque">
+    <article class="vagas-destaque">
+      <h3>Vagas em destaque</h3>
+      <section class="box-vagas">
+        <article>
+          <header>Operador de Máquinas</header>
+
+          <ul>
+            <li>Tipo de vaga: Efetivo</li>
+            <li>Local de trabalho: Mogi Mirim</li>
+            <li>Escolaridade: Ensino Médio Completo</li>
+            <li>Horário de trabalho: Disponibilidade de horário</li>
+          </ul>
+          <p>
+            Refeição no local, Convênio Médico e Odontológico, Cesta básica<br />
+            <br />
+            Experiência na área. Necessário veículo próprio.
+          </p>
+          <a class="btn" href="mailto:curriculoitapira@hotmail.com"
+            >Envie seu currículo</a
+          >
+        </article>
+        <article>
+          <header>Ajudante de Produção</header>
+          <ul>
+            <li>Tipo de vaga: Efetiva</li>
+            <li>Local de trabalho: Mogi Mirim</li>
+            <li>Escolaridade: Ensino Médio Completo</li>
+            <li>Horário de trabalho: Disponibilidade de horário</li>
+          </ul>
+          <p>
+            Refeição no local, Convênio Médico e Odontológico, Cesta básica<br />
+            <br />
+            Experiência na área. Necessário veículo próprio.
+          </p>
+          <a class="btn" href="mailto:curriculoitapira@hotmail.com"
+            >Envie seu currículo</a
+          >
+        </article>
+        <article>
+          <header style="font-size: 1.3em">Analista de Recursos Humanos</header>
+          <ul>
+            <li>Tipo de vaga: Temporária</li>
+            <li>Local de trabalho: Mogi Mirim</li>
+            <li>
+              Escolaridade: Ensino Superior em Psicologia, Administração ou
+              áreas correlatas.
+            </li>
+            <li>
+              Horário de trabalho: 2ª a 5ª 08h00 as 17h30, 6ª 08h00 as 17h00
+            </li>
+          </ul>
+          <p>
+            Refeição no local. <br />
+            <br />
+            Experiência em recrutamento e seleção, organização de treinamentos.
+          </p>
+          <a class="btn" href="mailto:curriculoitapira@hotmail.com"
+            >Envie seu currículo</a
+          >
+        </article>
+      </section>
+    </article>
+  </section>
+  <aside>
+    <h4>Redes:</h4>
+    <div class="redes-icons">
+      <a href="https://www.facebook.com/pontual.empregos/" target="_blank"
+        ><i class="fab fa-facebook-square"></i
+      ></a>
+      <a href="./contato.html"><i class="fas fa-envelope"></i></a>
+      <a
+        href="https://www.linkedin.com/in/cygnus-presta%C3%A7%C3%A3o-de-servi%C3%A7os-em-rh-a919a818b/"
+        target="_blank"
+        ><i class="fab fa-linkedin"></i
+      ></a>
+    </div>
+  </aside>
+</div>
+<section class="noticias">
+  <main>
+    <header>
+      <h3></h3>
+    </header>
+    <img src="./images/Camada4_min.png" alt="" />
+    <section class="frase-efeito">
+      <p>
+        <span class="fonte-efeito">Para empresas: </span> O lugar certo para
+        contratar!
+      </p>
+
+      <p>
+        <span class="fonte-efeito">Para pessoas: </span> O lugar certo para
+        trabalhar!
+      </p>
+    </section>
+  </main>
+</section>
