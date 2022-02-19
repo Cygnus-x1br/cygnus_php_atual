@@ -10,30 +10,33 @@
 <url>
   <loc>http://www.cygnusrh.com.br/</loc>
   <lastmod>2021-11-19T18:52:46+00:00</lastmod>
+  <changefreq>always</changefreq>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>http://www.cygnusrh.com.br/index.html</loc>
+  <loc>http://www.cygnusrh.com.br/index.php</loc>
+  <lastmod>2021-11-19T18:52:46+00:00</lastmod>
+  <changefreq>always</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.cygnusrh.com.br/vagas.php</loc>
+  <lastmod>2021-11-19T18:52:46+00:00</lastmod>
+  <changefreq>always</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.cygnusrh.com.br/sobre.php</loc>
   <lastmod>2021-11-19T18:52:46+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.cygnusrh.com.br/vagas.html</loc>
+  <loc>http://www.cygnusrh.com.br/servicos.php</loc>
   <lastmod>2021-11-19T18:52:46+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.cygnusrh.com.br/sobre.html</loc>
-  <lastmod>2021-11-19T18:52:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>http://www.cygnusrh.com.br/servicos.html</loc>
-  <lastmod>2021-11-19T18:52:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>http://www.cygnusrh.com.br/contato.html</loc>
+  <loc>http://www.cygnusrh.com.br/contato.php</loc>
   <lastmod>2021-11-19T18:52:46+00:00</lastmod>
   <priority>0.80</priority>
 </url>
