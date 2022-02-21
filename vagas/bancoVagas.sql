@@ -193,4 +193,6 @@ INSERT INTO tb_estado VALUES(null, 'Rio Grande do Sul', 'RS');
 INSERT INTO tb_cidade VALUES(null, 'Mogi Mirim', 27);
 INSERT INTO tb_cidade VALUES(null, 'Mogi Guaçu', 27);
 INSERT INTO tb_cidade VALUES(null, 'Itapira', 27);
-INSERT INTO tb_cidade VALUES(null, 'Santo André', 27);
+INSERT INTO tb_cidade VALUES(null, 'Santo André', 24);
+
+UPDATE tb_vaga SET ID_CIDADE=1;

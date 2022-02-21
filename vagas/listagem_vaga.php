@@ -19,11 +19,6 @@ if (!$query_send_cli) {
     die('Falha na conexão');
 }
 
-// $consulta_cidade = 'SELECT * FROM tb_cidade';
-// $query_send_cid = mysqli_query($conect, $consulta_cidade);
-// if (!$query_send_cid) {
-//     die('Falha na conexão');
-// }
 
 $lista_vaga = "SELECT * FROM tb_vaga ";
 $query_send = mysqli_query($conect, $lista_vaga);
@@ -62,6 +57,7 @@ $query_send = mysqli_query($conect, $lista_vaga);
 
                 <?php
                 while ($linha = mysqli_fetch_assoc($query_send)) {
+
                 ?>
 
                     <ul>
@@ -71,8 +67,11 @@ $query_send = mysqli_query($conect, $lista_vaga);
                             } elseif ($linha['tipo'] == 'T') {
                                 echo 'Temporária';
                             } ?></li>
+
                         <li><?php
+
                             $cidade = $linha['ID_CIDADE'];
+
                             $consulta_cidade = "SELECT * FROM tb_cidade WHERE IDCIDADE = $cidade";
 
                             $query_send_cid = mysqli_query($conect, $consulta_cidade);
