@@ -9,7 +9,8 @@ require_once('./_conexao/conexao.php');
 <?php
 include('./head.php');
 
-$query_vagas = "SELECT funcao, tipo, localTrab, escolaridade, horario, beneficios, descricao, destaque FROM tb_vaga WHERE destaque='S' AND fechamento='A'";
+$query_vagas = "SELECT funcao, tipo, c.nomeCidade as cidade, escolaridade, horario, beneficios, descricao, destaque FROM tb_vaga ";
+$query_vagas .= " INNER JOIN tb_cidade AS c ON ID_CIDADE = c.IDCIDADE WHERE destaque='S' AND fechamento='A'";
 $lista_vagas = mysqli_query($conect, $query_vagas);
 // var_dump($lista_vagas);
 
@@ -29,7 +30,7 @@ if (!$lista_vagas) {
                 while ($linha = mysqli_fetch_assoc($lista_vagas)) {
                     $funcao = $linha['funcao'];
                     $tipo = $linha['tipo'];
-                    $localTrab = $linha['localTrab'];
+                    $localTrab = $linha['cidade'];
                     $escolaridade = $linha['escolaridade'];
                     $horario = $linha['horario'];
                     $beneficios = $linha['beneficios'];

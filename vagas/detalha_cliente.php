@@ -11,6 +11,12 @@ if (!isset($_SESSION["cygnus_login"])) {
     die;
 };
 
+$consulta_cidade = 'SELECT * FROM tb_cidade ORDER BY nomeCidade';
+$query_send_cid = mysqli_query($conect, $consulta_cidade);
+if (!$query_send_cid) {
+    die('Falha na conexão');
+}
+
 ?>
 
 <?php
@@ -45,16 +51,18 @@ if (isset($_POST['nomeCliente'])) {
     $cod_cliente = $_POST['id_cliente'];
     $endereco = $_POST['endereco'];
     $bairro = $_POST['bairro'];
-    $cidade = $_POST['cidade'];
-    $estado = $_POST['estado'];
+    // $cidade = $_POST['cidade'];
+    // $estado = $_POST['estado'];
     $CNPJ = $_POST['CNPJ'];
     $contato = $_POST['contato'];
     $email = $_POST['email'];
     $telefone = $_POST['telefone'];
+    $cidade = $_POST['cidade'];
 
     $altera_cliente = "UPDATE tb_cliente ";
-    $altera_cliente .= " SET nomeCliente='$nomeCliente', endereco='$endereco', bairro='$bairro', cidade='$cidade', estado='$estado', CNPJ='$CNPJ', contato='$contato', email='$email', telefone='$telefone'";
+    $altera_cliente .= " SET nomeCliente='$nomeCliente', endereco='$endereco', bairro='$bairro', cidade='$cidade', estado='$estado', CNPJ='$CNPJ', contato='$contato', email='$email', telefone='$telefone', ID_CIDADE=$cidade ";
     $altera_cliente .= " WHERE IDCLIENTE = $cod_cliente";
+    print_r($altera_cliente);
     $query_send = mysqli_query($conect, $altera_cliente);
     header("location:listagem_cliente.php");
 }
@@ -83,8 +91,19 @@ if (isset($_POST['nomeCliente'])) {
                 <input type="text" name="nomeCliente" placeholder="Razão Social" value="<?php echo $nomeCliente ?>" <?php echo $edit ?>>
                 <input type="text" name="endereco" placeholder="Endereço" value="<?php echo $endereco ?>" <?php echo $edit ?>>
                 <input type="text" name="bairro" placeholder="Bairro" value="<?php echo $bairro ?>" <?php echo $edit ?>>
-                <input type="text" name="cidade" placeholder="Cidade" value="<?php echo $cidade ?>" <?php echo $edit ?>>
-                <input type="text" name="estado" placeholder="Estado" value="<?php echo $estado ?>" <?php echo $edit ?>>
+                <!-- <input type="text" name="cidade" placeholder="Cidade" value="<?php echo $cidade ?>" <?php echo $edit ?>>
+                <input type="text" name="estado" placeholder="Estado" value="<?php echo $estado ?>" <?php echo $edit ?>> -->
+                <select name="cidade" id="" <?php echo $edit ?>>
+                    <?php
+                    while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
+                    ?>
+                        <option value="<?php echo $show_cidade['IDCIDADE'] ?>" <?php if ($cidade == $show_cidade['IDCIDADE']) {
+                                                                                    echo 'selected';
+                                                                                } ?>><?php echo $show_cidade['nomeCidade'] ?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
                 <input type="text" name="CNPJ" placeholder="CNPJ" value="<?php echo $CNPJ ?>" <?php echo $edit ?>>
                 <input type="text" name="contato" placeholder="Contato" value="<?php echo $contato ?>" <?php echo $edit ?>>
                 <input type="text" name="email" placeholder="E-Mail" value="<?php echo $email ?>" <?php echo $edit ?>>

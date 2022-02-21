@@ -11,10 +11,10 @@ require_once('./_conexao/conexao.php');
 // $query_vagas = "SELECT funcao, tipo, localTrab, escolaridade, horario, beneficios, descricao FROM tb_vagas";
 include('./head.php');
 
-$query_vagas = "SELECT funcao, tipo, localTrab, escolaridade, horario, beneficios, descricao FROM tb_vaga WHERE fechamento='A'";
+$query_vagas = "SELECT funcao, tipo, c.nomeCidade as cidade, escolaridade, horario, beneficios, descricao, destaque FROM tb_vaga ";
+$query_vagas .= " INNER JOIN tb_cidade AS c ON ID_CIDADE = c.IDCIDADE WHERE fechamento='A' ORDER BY funcao";
 $lista_vagas = mysqli_query($conect, $query_vagas);
 // var_dump($lista_vagas);
-
 if (!$lista_vagas) {
     die('Falha na conexao');
 }
@@ -30,7 +30,7 @@ if (!$lista_vagas) {
             while ($linha = mysqli_fetch_assoc($lista_vagas)) {
                 $funcao = $linha['funcao'];
                 $tipo = $linha['tipo'];
-                $localTrab = $linha['localTrab'];
+                $localTrab = $linha['cidade'];
                 $escolaridade = $linha['escolaridade'];
                 $horario = $linha['horario'];
                 $beneficios = $linha['beneficios'];
@@ -50,7 +50,7 @@ if (!$lista_vagas) {
                     <li>Horário de trabalho: <?php echo $horario ?></li>
                 </ul>
                 <p>
-                    <?php echo $beneficios ?>. <br />
+                    <?php echo $beneficios ?><br />
                     <?php echo $descricao ?>
                 </p>
                 <div class="underline"></div>
@@ -58,8 +58,6 @@ if (!$lista_vagas) {
             <?php
             }
             ?>
-            <!--  -->
-
 
             <h3>Não encontrou o que queria?</h3>
 

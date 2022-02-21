@@ -11,6 +11,12 @@ if (!isset($_SESSION["cygnus_login"])) {
     die;
 };
 
+$consulta_cidade = 'SELECT * FROM tb_cidade ORDER BY nomeCidade';
+$query_send_cid = mysqli_query($conect, $consulta_cidade);
+if (!$query_send_cid) {
+    die('Falha na conexão');
+}
+
 ?>
 
 
@@ -24,15 +30,16 @@ if (isset($_POST['nomeCliente'])) {
     }
     $endereco = $_POST['endereco'];
     $bairro = $_POST['bairro'];
+    // $cidade = $_POST['cidade'];
+    // $estado = $_POST['estado'];
     $cidade = $_POST['cidade'];
-    $estado = $_POST['estado'];
     $CNPJ = $_POST['CNPJ'];
     $contato = $_POST['contato'];
     $email = $_POST['email'];
     $telefone = $_POST['telefone'];
 
     $insere_cliente = "INSERT INTO tb_cliente ";
-    $insere_cliente .= "VALUES(null, '$nomeCliente', '$endereco', '$bairro', '$cidade', '$estado', '$CNPJ', '$contato', '$email', '$telefone')";
+    $insere_cliente .= "VALUES(null, '$nomeCliente', '$endereco', '$bairro', '$cidade', '$estado', '$CNPJ', '$contato', '$email', '$telefone', $cidade)";
     $query_send = mysqli_query($conect, $insere_cliente);
 }
 ?>
@@ -70,8 +77,19 @@ if (isset($_POST['nomeCliente'])) {
                 <input type="text" name="endereco" placeholder="Endereço">
 
                 <input type="text" name="bairro" placeholder="Bairro">
-                <input type="text" name="cidade" placeholder="Cidade">
-                <input type="text" name="estado" placeholder="Estado">
+                <!-- <input type="text" name="cidade" placeholder="Cidade">
+                <input type="text" name="estado" placeholder="Estado"> -->
+                <select name="cidade" id="">
+                    <?php
+                    while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
+                    ?>
+                        <option value="<?php echo $show_cidade['IDCIDADE'] ?>"><?php echo $show_cidade['nomeCidade'] ?></option>
+                    <?php
+                    }
+                    ?>
+
+
+                </select>
                 <input type="text" name="CNPJ" placeholder="CNPJ">
                 <input type="text" name="contato" placeholder="Contato">
                 <input type="text" name="email" placeholder="E-Mail">

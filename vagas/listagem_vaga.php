@@ -4,8 +4,6 @@ session_start();
 
 require_once('./_conexao/conexao.php');
 
-
-
 if (!isset($_SESSION["cygnus_login"])) {
     header("location:login.php");
     die;
@@ -20,6 +18,12 @@ $query_send_cli = mysqli_query($conect, $consulta_cliente);
 if (!$query_send_cli) {
     die('Falha na conexão');
 }
+
+// $consulta_cidade = 'SELECT * FROM tb_cidade';
+// $query_send_cid = mysqli_query($conect, $consulta_cidade);
+// if (!$query_send_cid) {
+//     die('Falha na conexão');
+// }
 
 $lista_vaga = "SELECT * FROM tb_vaga ";
 $query_send = mysqli_query($conect, $lista_vaga);
@@ -67,7 +71,18 @@ $query_send = mysqli_query($conect, $lista_vaga);
                             } elseif ($linha['tipo'] == 'T') {
                                 echo 'Temporária';
                             } ?></li>
-                        <li><?php echo $linha['localTrab'] ?></li>
+                        <li><?php
+                            $cidade = $linha['ID_CIDADE'];
+                            $consulta_cidade = "SELECT * FROM tb_cidade WHERE IDCIDADE = $cidade";
+
+                            $query_send_cid = mysqli_query($conect, $consulta_cidade);
+                            if (!$query_send_cid) {
+                                die('Falha na conexão');
+                            }
+                            $localTrab = mysqli_fetch_assoc($query_send_cid);
+                            echo $localTrab['nomeCidade'];
+                            ?>
+                        </li>
                         <li><?php if ($linha['fechamento'] == 'A') {
                                 echo 'Aberta';
                             } elseif ($linha['fechamento'] == 'P') {

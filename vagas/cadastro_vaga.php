@@ -13,9 +13,14 @@ $user = $_SESSION["cygnus_login"];
 
 <?php
 
-$consulta_cliente = 'SELECT * FROM tb_cliente';
+$consulta_cliente = 'SELECT * FROM tb_cliente ORDER BY nomeCliente';
 $query_send_cli = mysqli_query($conect, $consulta_cliente);
 if (!$query_send_cli) {
+    die('Falha na conexão');
+}
+$consulta_cidade = 'SELECT * FROM tb_cidade ORDER BY nomeCidade';
+$query_send_cid = mysqli_query($conect, $consulta_cidade);
+if (!$query_send_cid) {
     die('Falha na conexão');
 }
 
@@ -31,8 +36,13 @@ if (isset($_POST['funcao'])) {
     } else {
         die('Selecione o tipo de vaga');
     }
-    if (!empty($_POST['local_trab'])) {
-        $local = $_POST['local_trab'];
+    // if (!empty($_POST['local_trab'])) {
+    //     $local = $_POST['local_trab'];
+    // } else {
+    //     die('Digite o local de trabalho');
+    // }
+    if (!empty($_POST['cidade'])) {
+        $cidade = $_POST['cidade'];
     } else {
         die('Digite o local de trabalho');
     }
@@ -53,7 +63,7 @@ if (isset($_POST['funcao'])) {
     };
 
     $insere_vaga = "INSERT INTO tb_vaga ";
-    $insere_vaga .= "VALUES(null, '$funcao', '$tipo', '$local', '$escolaridade', '$horario', '$beneficios', '$descricao', $cliente, now(),'A', null, '$destaque', $salario, $user)";
+    $insere_vaga .= "VALUES(null, '$funcao', '$tipo', '$local', '$escolaridade', '$horario', '$beneficios', '$descricao', $cliente, now(),'A', null, '$destaque', $salario, $user, $cidade)";
     print_r($insere_vaga);
     $query_send = mysqli_query($conect, $insere_vaga);
     header("location:listagem_vaga.php");
@@ -95,7 +105,18 @@ if (isset($_POST['funcao'])) {
                     <input type="radio" name="tipo" id='temporario' value='T'>
                     <label for="temporario">Temporária</label>
                 </div>
-                <input type="text" name="local_trab" placeholder="Local de Trabalho">
+                <!-- <input type="text" name="local_trab" placeholder="Local de Trabalho"> -->
+                <select name="cidade" id="">
+                    <?php
+                    while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
+                    ?>
+                        <option value="<?php echo $show_cidade['IDCIDADE'] ?>"><?php echo $show_cidade['nomeCidade'] ?></option>
+                    <?php
+                    }
+                    ?>
+
+
+                </select>
                 <input type="text" name="escolaridade" placeholder="Escolaridade">
                 <input type="text" name="horario" placeholder="Horário de trabalho">
                 <input type="text" name="salario" placeholder="Salário">
