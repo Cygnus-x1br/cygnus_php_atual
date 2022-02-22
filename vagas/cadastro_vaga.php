@@ -1,9 +1,6 @@
 <?php
 session_start();
-
 require_once('./_conexao/conexao.php');
-
-
 if (!isset($_SESSION["cygnus_login"])) {
     header("location:login.php");
     die;
@@ -12,7 +9,6 @@ $user = $_SESSION["cygnus_login"];
 ?>
 
 <?php
-
 $consulta_cliente = 'SELECT * FROM tb_cliente ORDER BY nomeCliente';
 $query_send_cli = mysqli_query($conect, $consulta_cliente);
 if (!$query_send_cli) {
@@ -29,22 +25,17 @@ if (isset($_POST['funcao'])) {
     if (!empty($_POST['funcao'])) {
         $funcao = $_POST['funcao'];
     } else {
-        die('Digite a função da vaga');
+        die("<h1>Digite a função da vaga</h1>");
     }
     if (!empty($_POST['tipo'])) {
         $tipo = $_POST['tipo'];
     } else {
-        die('Selecione o tipo de vaga');
+        die("<h1>Selecione o tipo de vaga</h1>");
     }
-    // if (!empty($_POST['local_trab'])) {
-    //     $local = $_POST['local_trab'];
-    // } else {
-    //     die('Digite o local de trabalho');
-    // }
     if (!empty($_POST['cidade'])) {
         $cidade = $_POST['cidade'];
     } else {
-        die('Digite o local de trabalho');
+        die("<h1>Digite o local de trabalho</h1>");
     }
     $escolaridade = $_POST['escolaridade'];
     $horario = $_POST['horario'];
@@ -61,10 +52,8 @@ if (isset($_POST['funcao'])) {
     } else {
         $destaque = '';
     };
-
     $insere_vaga = "INSERT INTO tb_vaga ";
-    $insere_vaga .= "VALUES(null, '$funcao', '$tipo', '$local', '$escolaridade', '$horario', '$beneficios', '$descricao', $cliente, now(),'A', null, '$destaque', $salario, $user, $cidade)";
-    print_r($insere_vaga);
+    $insere_vaga .= "VALUES(null, '$funcao', '$tipo', '$cidade', '$escolaridade', '$horario', '$beneficios', '$descricao', $cliente, now(),'A', null, '$destaque', $salario, $user, $cidade)";
     $query_send = mysqli_query($conect, $insere_vaga);
     header("location:listagem_vaga.php");
 }
@@ -80,24 +69,15 @@ if (isset($_POST['funcao'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
-    <style>
-        <?php
-
-        ?>
-    </style>
 </head>
 
 <body>
     <header>
         <h2>Cadastro de vagas</h2>
-
     </header>
     <main>
-
         <div id="formulario">
-
             <form action="cadastro_vaga.php" method="POST">
-
                 <input type="text" name="funcao" placeholder="Função">
                 <div class="radio">
                     <input type="radio" name="tipo" id='efetivo' value='E'>
@@ -105,7 +85,6 @@ if (isset($_POST['funcao'])) {
                     <input type="radio" name="tipo" id='temporario' value='T'>
                     <label for="temporario">Temporária</label>
                 </div>
-                <!-- <input type="text" name="local_trab" placeholder="Local de Trabalho"> -->
                 <select name="cidade" id="">
                     <?php
                     while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
@@ -114,8 +93,6 @@ if (isset($_POST['funcao'])) {
                     <?php
                     }
                     ?>
-
-
                 </select>
                 <input type="text" name="escolaridade" placeholder="Escolaridade">
                 <input type="text" name="horario" placeholder="Horário de trabalho">
@@ -132,7 +109,6 @@ if (isset($_POST['funcao'])) {
                     ?>
                 </select>
                 <div class="check">
-
                     <label for="destaque">Vaga em destaque</label>
                     <input type="checkbox" name="destaque" id="destaque" value="S">
                 </div>
@@ -142,15 +118,12 @@ if (isset($_POST['funcao'])) {
                 <input type="submit" value="Adicionar vaga">
             </form>
         </div>
-
     </main>
     <div class="opcoes">
-
         <div class="btn">
             <a href="./index.php">Voltar ao Inicio</a>
         </div>
     </div>
-
 </body>
 
 </html>

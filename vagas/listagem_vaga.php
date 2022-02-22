@@ -56,6 +56,7 @@ $query_send = mysqli_query($conect, $lista_vaga);
                     <li>Tipo</li>
                     <li>Local de Trabalho</li>
                     <li>Status</li>
+                    <li>Data Inclusão</li>
                     <li></li>
 
                 </ul>
@@ -93,6 +94,7 @@ $query_send = mysqli_query($conect, $lista_vaga);
                                 echo 'Fechada';
                             }
                             ?></li>
+                        <li><?php echo $linha['dataCriacao']; ?></li>
                         <li><a href="./detalha_vaga.php?vaga=<?php echo $linha['IDVAGA'] ?>&edit=disabled">Detalhes</a></li>
                     </ul>
 

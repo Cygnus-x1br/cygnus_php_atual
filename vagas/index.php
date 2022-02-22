@@ -36,6 +36,9 @@ if (!isset($_SESSION["cygnus_login"])) {
                     <a href="./cadastro_cliente.php">Cadastrar Cliente</a>
                 </li>
                 <li>
+                    <a href="./cadastro_cidade.php">Cadastrar Cidade</a>
+                </li>
+                <li>
                     <a href="./logout.php">Sair</a>
                 </li>
             </ul>

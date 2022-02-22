@@ -1,26 +1,18 @@
 <?php
-
 session_start();
-
 require_once('./_conexao/conexao.php');
-
-
-
 if (!isset($_SESSION["cygnus_login"])) {
     header("location:login.php");
     die;
 };
+?>
 
+<?php
 $consulta_cidade = 'SELECT * FROM tb_cidade ORDER BY nomeCidade';
 $query_send_cid = mysqli_query($conect, $consulta_cidade);
 if (!$query_send_cid) {
     die('Falha na conexão');
 }
-
-?>
-
-
-<?php
 
 if (isset($_POST['nomeCliente'])) {
     if (!empty($_POST['nomeCliente'])) {
@@ -30,21 +22,16 @@ if (isset($_POST['nomeCliente'])) {
     }
     $endereco = $_POST['endereco'];
     $bairro = $_POST['bairro'];
-    // $cidade = $_POST['cidade'];
-    // $estado = $_POST['estado'];
     $cidade = $_POST['cidade'];
     $CNPJ = $_POST['CNPJ'];
     $contato = $_POST['contato'];
     $email = $_POST['email'];
     $telefone = $_POST['telefone'];
-
     $insere_cliente = "INSERT INTO tb_cliente ";
-    $insere_cliente .= "VALUES(null, '$nomeCliente', '$endereco', '$bairro', '$cidade', '$estado', '$CNPJ', '$contato', '$email', '$telefone', $cidade)";
+    $insere_cliente .= "VALUES(null, '$nomeCliente', '$endereco', '$bairro', '$CNPJ', '$contato', '$email', '$telefone', $cidade)";
     $query_send = mysqli_query($conect, $insere_cliente);
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -55,30 +42,18 @@ if (isset($_POST['nomeCliente'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
-    <style>
-        <?php
-
-        ?>
-    </style>
 </head>
 
 <body>
     <header>
-
         <h2>Cadastro de Clientes</h2>
     </header>
     <main>
-
         <div id="formulario">
-
             <form action="cadastro_cliente.php" method="POST">
-
                 <input type="text" name="nomeCliente" placeholder="Razão Social">
                 <input type="text" name="endereco" placeholder="Endereço">
-
                 <input type="text" name="bairro" placeholder="Bairro">
-                <!-- <input type="text" name="cidade" placeholder="Cidade">
-                <input type="text" name="estado" placeholder="Estado"> -->
                 <select name="cidade" id="">
                     <?php
                     while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
@@ -87,8 +62,6 @@ if (isset($_POST['nomeCliente'])) {
                     <?php
                     }
                     ?>
-
-
                 </select>
                 <input type="text" name="CNPJ" placeholder="CNPJ">
                 <input type="text" name="contato" placeholder="Contato">
@@ -97,15 +70,12 @@ if (isset($_POST['nomeCliente'])) {
                 <input type="submit" value="Adicionar cliente">
             </form>
         </div>
-
     </main>
     <div class="opcoes">
-
         <div class="btn">
             <a href="./index.php">Voltar ao Inicio</a>
         </div>
     </div>
-
 </body>
 
 </html>

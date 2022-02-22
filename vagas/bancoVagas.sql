@@ -52,91 +52,6 @@ FOREIGN KEY(ID_CANDIDATO) REFERENCES tb_candidato(IDCANDIDATO);
 ALTER TABLE cand_vaga ADD CONSTRAINT FK_VAGA
 FOREIGN KEY(ID_VAGA) REFERENCES tb_vaga(IDVAGA);
 
-
-CREATE TABLE tb_user (
-    IDUSUARIO INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(20) NOT NULL,
-    passwd VARCHAR(100) NOT NULL UNIQUE,
-    nome_usuario VARCHAR(100) NOT NULL,
-    permissoes CHAR(1)
-);
-
-
-ALTER TABLE tb_vaga ADD COLUMN destaque char(1) ;
-
-ALTER TABLE tb_vaga CHANGE dataFechamento dataAlteracao DATETIME;
-
-
-ALTER TABLE tb_vaga ADD COLUMN salario FLOAT(10,2) ;
-ALTER TABLE tb_vaga ADD COLUMN ID_USUARIO INT ;
-
-ALTER TABLE tb_vaga ADD CONSTRAINT FK_USUARIO
-FOREIGN KEY(ID_USUARIO) REFERENCES tb_user(IDUSUARIO);
-
-ALTER TABLE tb_vaga MODIFY COLUMN salario FLOAT(10,2) DEFAULT 0.00;
-
-CREATE TABLE tb_estado (
-    IDESTADO INT PRIMARY KEY AUTO_INCREMENT,
-    nomeEstado varchar(30) NOT NULL UNIQUE,
-    siglaEstado char(2) NOT NULL UNIQUE
-);
-
-CREATE TABLE tb_cidade (
-    IDCIDADE INT PRIMARY KEY AUTO_INCREMENT,
-    nomeCidade varchar(30) NOT NULL,
-    ID_ESTADO INT NOT NULL
-);
-
-ALTER TABLE tb_cidade ADD CONSTRAINT FK_ESTADO
-FOREIGN KEY(ID_ESTADO) REFERENCES tb_estado(IDESTADO);
-
-INSERT INTO tb_estado VALUES(null, 'Acre', 'AC');
-INSERT INTO tb_estado VALUES(null, 'Amapá', 'AP');
-INSERT INTO tb_estado VALUES(null, 'Amazonas', 'AM');
-INSERT INTO tb_estado VALUES(null, 'Rondônia', 'RO');
-INSERT INTO tb_estado VALUES(null, 'Roraima', 'RR');
-INSERT INTO tb_estado VALUES(null, 'Pará', 'PA');
-INSERT INTO tb_estado VALUES(null, 'Tocantins', 'TO');
-INSERT INTO tb_estado VALUES(null, 'Goiás', 'GO');
-INSERT INTO tb_estado VALUES(null, 'Distrito Federal', 'DF');
-INSERT INTO tb_estado VALUES(null, 'Mato Grosso', 'MT');
-INSERT INTO tb_estado VALUES(null, 'Mato Grosso do Sul', 'MS');
-INSERT INTO tb_estado VALUES(null, 'Maranhão', 'MA');
-INSERT INTO tb_estado VALUES(null, 'Piauí', 'PI');
-INSERT INTO tb_estado VALUES(null, 'Ceará', 'CE');
-INSERT INTO tb_estado VALUES(null, 'Rio Grande do Norte', 'RN');
-INSERT INTO tb_estado VALUES(null, 'Pernambuco', 'PE');
-INSERT INTO tb_estado VALUES(null, 'Alagoas', 'AL');
-INSERT INTO tb_estado VALUES(null, 'Sergipe', 'SE');
-INSERT INTO tb_estado VALUES(null, 'Bahia', 'BA');
-INSERT INTO tb_estado VALUES(null, 'Paraíba', 'PB');
-INSERT INTO tb_estado VALUES(null, 'Espírito Santo', 'ES');
-INSERT INTO tb_estado VALUES(null, 'Minas Gerais', 'MG');
-INSERT INTO tb_estado VALUES(null, 'Rio de Janeiro', 'RJ');
-INSERT INTO tb_estado VALUES(null, 'São Paulo', 'SP');
-INSERT INTO tb_estado VALUES(null, 'Paraná', 'PR');
-INSERT INTO tb_estado VALUES(null, 'Santa Catarina', 'SC');
-INSERT INTO tb_estado VALUES(null, 'Rio Grande do Sul', 'RS');
-
-INSERT INTO tb_cidade VALUES(null, 'Mogi Mirim', 27);
-INSERT INTO tb_cidade VALUES(null, 'Mogi Guaçu', 27);
-INSERT INTO tb_cidade VALUES(null, 'Itapira', 27);
-INSERT INTO tb_cidade VALUES(null, 'Santo André', 27);
-
-ALTER TABLE tb_vaga ADD COLUMN ID_CIDADE INT;
-ALTER TABLE tb_cliente ADD COLUMN ID_CIDADE INT;
-
-ALTER TABLE tb_vaga ADD CONSTRAINT FK_CIDADE_VAGA
-FOREIGN KEY(ID_CIDADE) REFERENCES tb_cidade(IDCIDADE);
-
-ALTER TABLE tb_cliente ADD CONSTRAINT FK_CIDADE_CLIENTE
-FOREIGN KEY(ID_CIDADE) REFERENCES tb_cidade(IDCIDADE);
-
-
-/*QUERYS DE TESTE */
-
-UPDATE tb_vaga SET funcao='Contato Comercial', tipo='T', localTrab='Santo André', escolaridade='Ensino Médio Completo', horario='Seg. a Sex. 07:30 as 17:00', beneficios='Vale-Trasnporte, Vale-Refeição e Vale-Alimentação', descricao='Experiência em vendas na área de serviços, atendimento a clientes, Habilitação Cat B. Desejável conhecimentos na área de Recursos Humanos', ID_CLIENTE=1, fechamento='A', dataAlteracao=now(), destaque='', ID_USUARIO=1 , salario=15000.00 WHERE IDVAGA = 1;
-
 INSERT INTO tb_cliente VALUES(null,"Andromeda Terceirização de Mão de Obra e Servicos Ltda","Rua Marcelino Dantas, 117","Vila Alzira","Santo Andre","SP","17237955000160","Jean","jeanmarcel@cygnusrh.com.br","1144383622");
 
 INSERT INTO tb_vaga VALUES(null, 'Contato Comercial', 'T', 'Santo André', 'Ensino Médio Completo', 'Seg. a Sex. 07:30 as 17:00', 'Vale-Trasnporte, Vale-Refeição e Vale-Alimentação', 'Experiência em vendas na área de serviços, atendimento a clientes, Habilitação Cat B. Desejável conhecimentos na área de Recursos Humanos', 1, now(),'A', null);
@@ -156,41 +71,16 @@ ON v.ID_CLIENTE = c.IDCLIENTE
 WHERE v.fechamento LIKE '%%' 
 GROUP BY(c.IDCLIENTE);
 
-UPDATE tb_vaga SET destaque = 'S' WHERE IDVAGA=33;
-
-/* ADD DATA */
+CREATE TABLE tb_user (
+    IDUSUARIO INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(20) NOT NULL,
+    passwd VARCHAR(100) NOT NULL UNIQUE,
+    nome_usuario VARCHAR(100) NOT NULL,
+    permissoes CHAR(1)
+);
 
 INSERT INTO tb_user VALUES (null, 'jean', MD5('aczf0704'), 'Jean Marcel', null);
 
-INSERT INTO tb_estado VALUES(null, 'Acre', 'AC');
-INSERT INTO tb_estado VALUES(null, 'Amapá', 'AP');
-INSERT INTO tb_estado VALUES(null, 'Amazonas', 'AM');
-INSERT INTO tb_estado VALUES(null, 'Rondônia', 'RO');
-INSERT INTO tb_estado VALUES(null, 'Roraima', 'RR');
-INSERT INTO tb_estado VALUES(null, 'Pará', 'PA');
-INSERT INTO tb_estado VALUES(null, 'Tocantins', 'TO');
-INSERT INTO tb_estado VALUES(null, 'Goiás', 'GO');
-INSERT INTO tb_estado VALUES(null, 'Distrito Federal', 'DF');
-INSERT INTO tb_estado VALUES(null, 'Mato Grosso', 'MT');
-INSERT INTO tb_estado VALUES(null, 'Mato Grosso do Sul', 'MS');
-INSERT INTO tb_estado VALUES(null, 'Maranhão', 'MA');
-INSERT INTO tb_estado VALUES(null, 'Piauí', 'PI');
-INSERT INTO tb_estado VALUES(null, 'Ceará', 'CE');
-INSERT INTO tb_estado VALUES(null, 'Rio Grande do Norte', 'RN');
-INSERT INTO tb_estado VALUES(null, 'Pernambuco', 'PE');
-INSERT INTO tb_estado VALUES(null, 'Alagoas', 'AL');
-INSERT INTO tb_estado VALUES(null, 'Sergipe', 'SE');
-INSERT INTO tb_estado VALUES(null, 'Bahia', 'BA');
-INSERT INTO tb_estado VALUES(null, 'Paraíba', 'PB');
-INSERT INTO tb_estado VALUES(null, 'Espírito Santo', 'ES');
-INSERT INTO tb_estado VALUES(null, 'Minas Gerais', 'MG');
-INSERT INTO tb_estado VALUES(null, 'Rio de Janeiro', 'RJ');
-INSERT INTO tb_estado VALUES(null, 'São Paulo', 'SP');
-INSERT INTO tb_estado VALUES(null, 'Paraná', 'PR');
-INSERT INTO tb_estado VALUES(null, 'Santa Catarina', 'SC');
-INSERT INTO tb_estado VALUES(null, 'Rio Grande do Sul', 'RS');
+ALTER TABLE tb_vaga ADD COLUMN destaque char(1) ;
 
-INSERT INTO tb_cidade VALUES(null, 'Mogi Mirim', 27);
-INSERT INTO tb_cidade VALUES(null, 'Mogi Guaçu', 27);
-INSERT INTO tb_cidade VALUES(null, 'Itapira', 27);
-INSERT INTO tb_cidade VALUES(null, 'Santo André', 27);
+UPDATE tb_vaga SET destaque = 'S' WHERE IDVAGA=33;

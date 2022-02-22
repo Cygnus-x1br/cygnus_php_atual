@@ -22,18 +22,17 @@ if (!$query_send_cid) {
     die('Falha na conexão');
 }
 
-
 if (isset($_GET['vaga'])) {
     $cod_vaga = $_GET['vaga'];
     $edit = $_GET['edit'];
 
-
-    $consulta_vaga = "SELECT * FROM tb_vaga INNER JOIN tb_cliente ON IDCLIENTE = ID_CLIENTE WHERE IDVAGA= $cod_vaga";
+    $consulta_vaga = "SELECT * FROM tb_vaga ";
+    $consulta_vaga .= " WHERE IDVAGA= $cod_vaga";
     $query_send = mysqli_query($conect, $consulta_vaga);
     $detalha_vaga = mysqli_fetch_assoc($query_send);
+
     $funcao = $detalha_vaga['funcao'];
     $tipo = $detalha_vaga['tipo'];
-    // $local = $detalha_vaga['localTrab'];
     $cidade = $detalha_vaga['ID_CIDADE'];
     $escolaridade = $detalha_vaga['escolaridade'];
     $horario = $detalha_vaga['horario'];
@@ -43,7 +42,6 @@ if (isset($_GET['vaga'])) {
     $cliente = $detalha_vaga['ID_CLIENTE'];
     $IDVAGA = $detalha_vaga['IDVAGA'];
     $destaque = $detalha_vaga['destaque'];
-
     $fechamento = $detalha_vaga['fechamento'];
 }
 
@@ -59,11 +57,6 @@ if (isset($_POST['funcao'])) {
     } else {
         die('Selecione o tipo de vaga');
     }
-    // if (!empty($_POST['local_trab'])) {
-    //     $local = $_POST['local_trab'];
-    // } else {
-    //     die('Digite o local de trabalho');
-    // }
     if (!empty($_POST['cidade'])) {
         $cidade = $_POST['cidade'];
     } else {
@@ -93,10 +86,9 @@ if (isset($_POST['funcao'])) {
     }
 
     $altera_vaga = "UPDATE tb_vaga ";
-    $altera_vaga .= " SET funcao='$funcao', tipo='$tipo', localTrab='$local', escolaridade='$escolaridade', horario='$horario', beneficios='$beneficios', descricao='$descricao', ID_CLIENTE=$cliente, fechamento='$fechamento', dataAlteracao=now(), destaque='$destaque', ID_USUARIO=$user , salario=$salario, ID_CIDADE=$cidade";
+    $altera_vaga .= " SET funcao='$funcao', tipo='$tipo', escolaridade='$escolaridade', horario='$horario', beneficios='$beneficios', descricao='$descricao', ID_CLIENTE=$cliente, fechamento='$fechamento', dataAlteracao=now(), destaque='$destaque', ID_USUARIO=$user , salario=$salario, ID_CIDADE=$cidade";
     $altera_vaga .= " WHERE IDVAGA = $codigo_vaga";
     $query_send = mysqli_query($conect, $altera_vaga);
-    print_r($altera_vaga);
     header("location:listagem_vaga.php");
 }
 
@@ -136,14 +128,13 @@ if (isset($_POST['funcao'])) {
                     <input type='radio' name='tipo' id='temporario' value='T' <?php echo $t ?> <?php echo $edit ?>>
                     <label for='temporario'>Temporária</label>
                 </div>
-                <!-- <input type="text" name="local_trab" placeholder="Local de Trabalho" value="<?php echo $local ?>" <?php echo $edit ?>> -->
                 <select name="cidade" id="" <?php echo $edit ?>>
                     <?php
                     while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
                     ?>
-                        <option value="<?php echo $show_cidade['IDCIDADE'] ?>"><?php if ($cidade == $show_cidade['IDCIDADE']) {
+                        <option value="<?php echo $show_cidade['IDCIDADE'] ?>" <?php if ($cidade == $show_cidade['IDCIDADE']) {
                                                                                     echo 'selected';
-                                                                                } ?><?php echo $show_cidade['nomeCidade'] ?></option>
+                                                                                } ?>><?php echo $show_cidade['nomeCidade']; ?></option>
                     <?php
                     }
                     ?>

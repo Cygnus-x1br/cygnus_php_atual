@@ -20,13 +20,11 @@ if (!$lista_vagas) {
 ?>
 
 <div class="container">
-
     <section class='destaque'>
         <article class='vagas-destaque'>
             <h3>Vagas em destaque</h3>
             <section class="box-vagas">
                 <?php
-
                 while ($linha = mysqli_fetch_assoc($lista_vagas)) {
                     $funcao = $linha['funcao'];
                     $tipo = $linha['tipo'];
