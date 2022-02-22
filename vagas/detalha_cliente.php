@@ -1,11 +1,6 @@
 <?php
-
 session_start();
-
 require_once('./_conexao/conexao.php');
-
-
-
 if (!isset($_SESSION["cygnus_login"])) {
     header("location:login.php");
     die;
@@ -16,15 +11,12 @@ $query_send_cid = mysqli_query($conect, $consulta_cidade);
 if (!$query_send_cid) {
     die('Falha na conexão');
 }
-
 ?>
 
 <?php
-
 if (isset($_GET['cliente'])) {
     $cod_cliente = $_GET['cliente'];
     $edit = $_GET['edit'];
-
 
     $consulta_cliente = "SELECT * FROM tb_cliente WHERE IDCLIENTE= $cod_cliente";
     $query_send = mysqli_query($conect, $consulta_cliente);
@@ -33,7 +25,6 @@ if (isset($_GET['cliente'])) {
     $nomeCliente = $detalha_cliente['nomeCliente'];
     $endereco = $detalha_cliente['endereco'];
     $bairro = $detalha_cliente['bairro'];
-
     $CNPJ = $detalha_cliente['CNPJ'];
     $contato = $detalha_cliente['contato'];
     $email = $detalha_cliente['email'];
@@ -51,7 +42,6 @@ if (isset($_POST['nomeCliente'])) {
     $cod_cliente = $_POST['id_cliente'];
     $endereco = $_POST['endereco'];
     $bairro = $_POST['bairro'];
-
     $CNPJ = $_POST['CNPJ'];
     $contato = $_POST['contato'];
     $email = $_POST['email'];
@@ -61,7 +51,6 @@ if (isset($_POST['nomeCliente'])) {
     $altera_cliente = "UPDATE tb_cliente ";
     $altera_cliente .= " SET nomeCliente='$nomeCliente', endereco='$endereco', bairro='$bairro', CNPJ='$CNPJ', contato='$contato', email='$email', telefone='$telefone', ID_CIDADE=$cidade ";
     $altera_cliente .= " WHERE IDCLIENTE = $cod_cliente";
-    print_r($altera_cliente);
     $query_send = mysqli_query($conect, $altera_cliente);
     header("location:listagem_cliente.php");
 }
@@ -86,7 +75,6 @@ if (isset($_POST['nomeCliente'])) {
     <main>
         <div id="formulario">
             <form action="detalha_cliente.php" method="POST">
-
                 <input type="text" name="nomeCliente" placeholder="Razão Social" value="<?php echo $nomeCliente ?>" <?php echo $edit ?>>
                 <input type="text" name="endereco" placeholder="Endereço" value="<?php echo $endereco ?>" <?php echo $edit ?>>
                 <input type="text" name="bairro" placeholder="Bairro" value="<?php echo $bairro ?>" <?php echo $edit ?>>
@@ -105,7 +93,6 @@ if (isset($_POST['nomeCliente'])) {
                 <input type="text" name="contato" placeholder="Contato" value="<?php echo $contato ?>" <?php echo $edit ?>>
                 <input type="text" name="email" placeholder="E-Mail" value="<?php echo $email ?>" <?php echo $edit ?>>
                 <input type="text" name="telefone" placeholder="Telefone" value="<?php echo $telefone ?>" <?php echo $edit ?>>
-
                 <div class="btn">
                     <?php
                     echo "<a href='./detalha_cliente.php?cliente=$IDCLIENTE &edit= '>Editar</a>";

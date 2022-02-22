@@ -1,28 +1,21 @@
 <?php
-
 session_start();
-
 require_once('./_conexao/conexao.php');
-
 if (!isset($_SESSION["cygnus_login"])) {
     header("location:login.php");
     die;
 };
-
 ?>
 
 <?php
-
 $consulta_cliente = 'SELECT * FROM tb_cliente';
 $query_send_cli = mysqli_query($conect, $consulta_cliente);
 if (!$query_send_cli) {
     die('Falha na conexão');
 }
 
-
 $lista_vaga = "SELECT * FROM tb_vaga ";
 $query_send = mysqli_query($conect, $lista_vaga);
-
 ?>
 
 <!DOCTYPE html>
@@ -39,12 +32,11 @@ $query_send = mysqli_query($conect, $lista_vaga);
 
 <body>
     <header>
-
+        <h2>Listagem de vagas</h2>
     </header>
     <main>
 
         <div id="lista">
-            <h2>Listagem de vagas</h2>
             <div class="listagem">
                 <ul>
                     <li>Função</li>
@@ -53,14 +45,10 @@ $query_send = mysqli_query($conect, $lista_vaga);
                     <li>Status</li>
                     <li>Data Inclusão</li>
                     <li></li>
-
                 </ul>
-
                 <?php
                 while ($linha = mysqli_fetch_assoc($query_send)) {
-
                 ?>
-
                     <ul>
                         <li><?php echo $linha['funcao'] ?></li>
                         <li><?php if ($linha['tipo'] == 'E') {
@@ -68,13 +56,9 @@ $query_send = mysqli_query($conect, $lista_vaga);
                             } elseif ($linha['tipo'] == 'T') {
                                 echo 'Temporária';
                             } ?></li>
-
                         <li><?php
-
                             $cidade = $linha['ID_CIDADE'];
-
                             $consulta_cidade = "SELECT * FROM tb_cidade WHERE IDCIDADE = $cidade";
-
                             $query_send_cid = mysqli_query($conect, $consulta_cidade);
                             if (!$query_send_cid) {
                                 die('Falha na conexão');
@@ -96,21 +80,17 @@ $query_send = mysqli_query($conect, $lista_vaga);
                         <li><?php echo $linha['dataCriacao']; ?></li>
                         <li><a href="./detalha_vaga.php?vaga=<?php echo $linha['IDVAGA'] ?>&edit=disabled">Detalhes</a></li>
                     </ul>
-
                 <?php
                 }
                 ?>
             </div>
             <div class="opcoes">
-
                 <div class="btn">
                     <a href="./index.php">Voltar ao Inicio</a>
                 </div>
             </div>
         </div>
-
     </main>
-
 </body>
 
 </html>

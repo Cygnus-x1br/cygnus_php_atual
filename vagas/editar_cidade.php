@@ -1,24 +1,19 @@
 <?php
-
 session_start();
-
 require_once('./_conexao/conexao.php');
-
-
 
 if (!isset($_SESSION["cygnus_login"])) {
     header("location:login.php");
     die;
 };
+?>
 
+<?php
 $consulta_estado = 'SELECT * FROM tb_estado ORDER BY nomeEstado';
 $query_send_est = mysqli_query($conect, $consulta_estado);
 if (!$query_send_est) {
     die('Falha na conexão');
 }
-
-?>
-<?php
 
 $consulta_cliente = "SELECT * FROM tb_cidade WHERE IDCIDADE= $cod_cidade";
 $query_send = mysqli_query($conect, $consulta_cliente);

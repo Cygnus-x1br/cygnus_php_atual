@@ -1,9 +1,6 @@
 <?php
-
 session_start();
-
 require_once('./_conexao/conexao.php');
-
 if (isset($_POST['usuario'])) {
     $usuario = $_POST["usuario"];
     $senha = $_POST["senha"];
@@ -22,8 +19,6 @@ if (isset($_POST['usuario'])) {
         $message = 'Bem vindo';
     }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -35,13 +30,11 @@ if (isset($_POST['usuario'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
-
 </head>
 
 <body>
     <header>
         <h2>Tela de Login</h2>
-
     </header>
     <main>
         <div id="formulario">
@@ -49,19 +42,14 @@ if (isset($_POST['usuario'])) {
                 <input type="text" name="usuario" placeholder="Usuário">
                 <input type="password" name="senha" placeholder="Senha">
                 <input type="submit" value="Login">
-                <!-- <input type="image" src="./_assets/fig_botao_login.gif" alt=""> -->
                 <?php
                 if (isset($message)) {
                     echo "<p> $message </p>";
                 }
-
-
                 ?>
             </form>
         </div>
     </main>
-
-
 </body>
 
 </html>
