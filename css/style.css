@@ -127,7 +127,7 @@ footer p {
 /* Aside */
 
 .container aside {
-  align-items: flex-end;
+  /* align-items: flex-end; */
   background: #336988;
   padding: 20px;
   width: 100%;
@@ -166,7 +166,7 @@ section.destaque {
   justify-content: center;
   width: 100%;
   flex-direction: column;
-  min-width: 960px;
+  /* min-width: 960px; */
 }
 
 section.destaque h2 {
