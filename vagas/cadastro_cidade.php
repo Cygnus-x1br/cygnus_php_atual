@@ -26,7 +26,6 @@ if (isset($_POST['nomeCidade'])) {
     $query_send = mysqli_query($conect, $insere_cidade);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
