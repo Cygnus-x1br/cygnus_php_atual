@@ -133,6 +133,8 @@ GROUP BY(c.IDCLIENTE);
 
 UPDATE tb_vaga SET destaque = 'S' WHERE IDVAGA=33;
 
+SELECT funcao, tipo, c.nomeCidade as cidade, e.siglaEstado as estado, escolaridade, horario, beneficios, descricao, destaque FROM tb_vaga INNER JOIN tb_cidade AS c ON ID_CIDADE = c.IDCIDADE INNER JOIN tb_estado AS e ON c.ID_ESTADO = e.IDESTADO WHERE destaque='S' AND fechamento='A' ORDER BY dataCriacao DESC;
+
 /* ADD DATA */
 
 INSERT INTO tb_user VALUES (null, 'jean', MD5('aczf0704'), 'Jean Marcel', null);
