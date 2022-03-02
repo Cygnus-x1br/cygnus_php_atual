@@ -44,6 +44,7 @@
       <link rel="stylesheet" href="./css/style.css?v1.2" />
       <link rel="stylesheet" href="./css/media_queries.css?v1.2" />
       <link rel="stylesheet" href="./css/form.css" />
+      <link rel="canonical" href="https://cygnusrh.com.br">
   </head>
 
   <body>
