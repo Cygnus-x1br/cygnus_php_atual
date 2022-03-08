@@ -4,7 +4,7 @@
 <?php
 include('./head.php');
 ?>
-<title>Cygnus Recursos Humanos * Envie seu curriculo</title>
+<title>Cygnus * Envie seu curriculo</title>
 </head>
 <?php
 include('./menu.php');

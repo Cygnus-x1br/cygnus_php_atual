@@ -8,7 +8,7 @@ require_once('./_conexao/conexao.php');
 <?php
 include('./head.php');
 ?>
-<title>Cygnus Recursos Humanos * Consulte nossas vagas de emprego</title>
+<title>Cygnus * Consulte nossas vagas de emprego</title>
 </head>
 <?php
 include('./menu.php');
