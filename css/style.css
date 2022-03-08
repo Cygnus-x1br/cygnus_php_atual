@@ -175,7 +175,7 @@ section.destaque h2 {
   margin: 10px;
   color: #1e5373;
 }
-section.destaque h3 {
+section.destaque h1 {
   font-size: 48px;
   font-family: 'Caveat', cursive;
   margin-bottom: 20px;
@@ -371,7 +371,8 @@ section.conteudo h2 {
   color: #1e5373;
 }
 
-section.conteudo h3 {
+section.conteudo h1,
+h3 {
   font-size: 48px;
   font-family: 'Caveat', cursive;
   margin-bottom: 20px;
@@ -429,7 +430,8 @@ span.flex-container-center {
 /* Página de contato */
 /*-------------------*/
 
-.contato h3 {
+.contato h3,
+h1 {
   text-align: center;
 }
 

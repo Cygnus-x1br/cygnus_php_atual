@@ -8,7 +8,13 @@ require_once('./_conexao/conexao.php');
 <html lang="pt-br">
 <?php
 include('./head.php');
-
+?>
+<title>Cygnus Recursos Humanos * Portal de empregos e serviços</title>
+</head>
+<?php
+include('./menu.php');
+?>
+<?php
 $query_vagas = "SELECT funcao, tipo, c.nomeCidade as cidade, e.siglaEstado as estado, escolaridade, horario, beneficios, descricao, destaque FROM tb_vaga ";
 $query_vagas .= " INNER JOIN tb_cidade AS c ON ID_CIDADE = c.IDCIDADE INNER JOIN tb_estado AS e ON c.ID_ESTADO = e.IDESTADO WHERE destaque='S' AND fechamento='A' ";
 $query_vagas .= " ORDER BY dataCriacao DESC";
@@ -23,7 +29,7 @@ if (!$lista_vagas) {
 <div class="container">
     <section class='destaque'>
         <article class='vagas-destaque'>
-            <h3>Vagas em destaque</h3>
+            <h1>Vagas em destaque</h1>
             <section class="box-vagas">
                 <?php
                 while ($linha = mysqli_fetch_assoc($lista_vagas)) {
@@ -73,7 +79,7 @@ if (!$lista_vagas) {
         <header>
             <h3></h3>
         </header>
-        <img src="./images/Camada4_min.png" alt="" />
+        <img src="./images/Camada4_min.png" alt="Vagas em todas as áreas" />
         <section class="frase-efeito">
             <p>
                 <span class="fonte-efeito">Para empresas: </span> O lugar certo para

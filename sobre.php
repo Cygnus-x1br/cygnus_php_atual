@@ -4,11 +4,16 @@
 <?php
 include('./head.php');
 ?>
+<title>Cygnus Recursos Humanos * Sobre nós</title>
+</head>
+<?php
+include('./menu.php');
+?>
 
 <div class="container">
     <section class="conteudo">
         <article class="textos-conteudo">
-            <h3>Sobre nós</h3>
+            <h1>Sobre nós</h1>
             <div class="float">
                 <p>
                     Somos um grupo especializado em garantir a contratação assertiva,
@@ -17,7 +22,7 @@ include('./head.php');
                     Possuímos as ferramentas necessárias para a filtragem de currículos e
                     preparo dos candidatos para a realização de trabalhos diversos.
                 </p>
-                <img class="sobre-img" src="./images/AdobeStock_340828216.jpg" alt="" />
+                <img class="sobre-img" src="./images/AdobeStock_340828216.jpg" alt="União" />
                 <p>
                     Contando com profissionais com vasta experiência (psicólogos,
                     advogados, técnico de seguraça do trabalho) altamente qualificados e

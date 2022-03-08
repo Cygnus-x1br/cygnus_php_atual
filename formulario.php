@@ -3,9 +3,12 @@
 
 <?php
 include('./head.php');
-
+?>
+<title>Cygnus Recursos Humanos * Envie seu curriculo</title>
+</head>
+<?php
+include('./menu.php');
 $page_link = 'https://cygnusrh.com.br/'
-
 ?>
 
 
@@ -15,7 +18,7 @@ $page_link = 'https://cygnusrh.com.br/'
 
 
     <form class="form_email" action="https://formsubmit.co/curriculos@cygnusrh.com.br" method="POST" enctype="multipart/form-data">
-        <h2>Envie seu currículo</h2>
+        <h1>Envie seu currículo</h1>
         <input type="hidden" name="_next" value="<?php echo $page_link ?>sucesso.php" />
         <input type="hidden" name="_captcha" value="false" />
         <input type="text" name="name" placeholder="Digite seu nome" required />

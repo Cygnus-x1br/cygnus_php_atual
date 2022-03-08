@@ -4,11 +4,16 @@
 <?php
 include('./head.php');
 ?>
+<title>Cygnus Recursos Humanos * Entre em contato</title>
+</head>
+<?php
+include('./menu.php');
+?>
 
 <div class="container">
     <section class="conteudo">
         <div class="contato">
-            <h3>Fale conosco</h3>
+            <h1>Fale conosco</h1>
 
             <div class="email-curriculo">
                 <h4>Envio de curriculos</h4>

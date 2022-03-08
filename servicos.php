@@ -4,13 +4,18 @@
 <?php
 include('./head.php');
 ?>
+<title>Cygnus * Nossos serviços, Temporários, Terceirizados, Seleção</title>
+</head>
+<?php
+include('./menu.php');
+?>
 
 
 
 <div class="container">
     <section class="conteudo">
         <article class="textos-conteudo">
-            <h3>Nossos serviços</h3>
+            <h1>Nossos serviços</h1>
             <h4>Mão de Obra Temporária</h4>
             <p>
                 Regido pela Lei 6.019/74, o <em>Trabalho Temporário</em> é extensamente

@@ -32,10 +32,10 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta name="keywords" content="Empregos, vagas,Cygnus RH, trabalho temporário, terceirização, empregos Mogi Guaçu, empregos Itapira, empregos Socorro, empregos Mogi Mirim" />
-      <meta name="description" content="Cygnus Recursos Humanos. Agencia de empregos em Mogi Guaçu. Trabalhamos vagas de emprego em toda a região da Baixa Mogiana (Mogi Guaçu, Mogi Mirim, Itapira Socorro, Jacutinga, Estiva Gerbi e ABC Paulista" />
+      <meta name="description" content="Cygnus Recursos Humanos. Agencia de empregos em Mogi Guaçu. Trabalhamos vagas de emprego em toda a região da Baixa Mogiana (Mogi Guaçu, Mogi Mirim, Itapira, Socorro, Jacutinga, Estiva Gerbi) e ABC Paulista" />
       <meta name="author" content="Jean Marcel Fiad" />
       <meta name="robots" content="index, follow" />
-      <title>Cygnus Recursos Humanos * Bem vindo</title>
+
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -45,36 +45,3 @@
       <link rel="stylesheet" href="./css/media_queries.css?v1.2" />
       <link rel="stylesheet" href="./css/form.css" />
       <link rel="canonical" href="https://cygnusrh.com.br">
-  </head>
-
-  <body>
-      <!-- Google Tag Manager (noscript) -->
-      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMSHV97" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
-      <!-- End Google Tag Manager (noscript) -->
-      <header>
-          <img class="logo-img" src="./images/CisneOriginalSemFundo.png" alt="" />
-          <div class="flex-container-col">
-              <img class="texto-logo" src="./images/Logo_texto.png" alt="" />
-          </div>
-          <div></div>
-      </header>
-
-      <section class="navbar">
-          <nav>
-              <ul>
-                  <li><a href="./index.php">Home</a></li>
-                  <div class="blind-line"></div>
-                  <li><a href="./vagas.php">Vagas</a></li>
-                  <div class="blind-line"></div>
-                  <li><a href="./sobre.php">Sobre</a></li>
-                  <div class="blind-line"></div>
-                  <li><a href="./servicos.php">Serviços</a></li>
-                  <div class="blind-line"></div>
-                  <li><a href="./contato.php">Contato</a></li>
-                  <div class="blind-line"></div>
-                  <li>
-                      <a class="curriculo" href="./formulario.php">Envie seu curriculo</a>
-                  </li>
-              </ul>
-          </nav>
-      </section>
