@@ -19,7 +19,7 @@ include('./menu.php');
 // $query_vagas = "SELECT funcao, tipo, localTrab, escolaridade, horario, beneficios, descricao FROM tb_vagas";
 // include('./head.php');
 
-$query_vagas = "SELECT funcao, tipo, c.nomeCidade as cidade, e.siglaEstado as estado, escolaridade, horario, beneficios, descricao, destaque, dataCriacao FROM tb_vaga ";
+$query_vagas = "SELECT funcao, tipo, c.nomeCidade as cidade, e.siglaEstado as estado, escolaridade, horario, beneficios, descricao, destaque, dataCriacao, DATE_ADD(dataCriacao, INTERVAL 30 DAY) as dataValidade FROM tb_vaga ";
 $query_vagas .= " INNER JOIN tb_cidade AS c ON ID_CIDADE = c.IDCIDADE INNER JOIN tb_estado AS e ON c.ID_ESTADO = e.IDESTADO WHERE fechamento='A' ORDER BY funcao";
 $lista_vagas = mysqli_query($conect, $query_vagas);
 // var_dump($lista_vagas);
@@ -46,6 +46,7 @@ if (!$lista_vagas) {
                 $beneficios = $linha['beneficios'];
                 $descricao = $linha['descricao'];
                 $dataCriacao = $linha['dataCriacao'];
+                $dataValidade = $linha['dataValidade'];
 
 
             ?>
@@ -74,6 +75,7 @@ if (!$lista_vagas) {
                         "title": "<?php echo $funcao ?>",
                         "description": "<?php echo '<p>' . $descricao . '</p>' ?>",
                         "datePosted": "<?php echo $dataCriacao ?>",
+                        "validThrough": "<?php echo $dataValidade ?>",
                         "jobLocation": {
                             "@type": "Place",
                             "address": {
