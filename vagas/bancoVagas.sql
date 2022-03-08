@@ -108,6 +108,32 @@ ALTER TABLE tb_cliente DROP COLUMN estado;
 
 ALTER TABLE tb_vaga MODIFY beneficios VARCHAR(150);
 
+
+/* Alterações a serem efetuadas */
+
+CREATE TABLE tb_area_interesse (
+    IDAREA INT PRIMARY KEY AUTO_INCREMENT,
+    area_atuacao VARCHAR(20) UNIQUE NOT NULL,
+    ID_CANDIDATO INT
+);
+
+ALTER TABLE tb_candidato ADD COLUMN CPF VARCHAR(11) UNIQUE NOT NULL;
+ALTER TABLE tb_candidato ADD COLUMN endereco VARCHAR(100);
+ALTER TABLE tb_candidato ADD COLUMN ID_CIDADE INT;
+ALTER TABLE tb_candidato ADD COLUMN ID_AREA INT;
+ALTER TABLE tb_candidato ADD COLUMN funcao VARCHAR(60);
+/*campo curriculo em princípio armazena caminho para o arquivo. posso mudar futuramente para blob para armazenar o arquivo */
+ALTER TABLE tb_candidato ADD COLUMN curriculo VARCHAR(100);
+ALTER TABLE tb_candidato ADD COLUMN outra_cidade VARCHAR(60);
+
+-- ALTER TABLE tb_area_interesse DROP FOREIGN KEY FK_CANDIDATO_AREA;
+
+ALTER TABLE tb_candidato ADD CONSTRAINT FK_CANDIDATO_AREA
+FOREIGN KEY(ID_AREA) REFERENCES tb_area_interesse(IDAREA);
+
+ALTER TABLE tb_candidato ADD CONSTRAINT FK_CANDIDATO_CIDADE
+FOREIGN KEY(ID_CIDADE) REFERENCES tb_cidade(IDCIDADE);
+
 /*QUERYS DE TESTE */
 
 UPDATE tb_vaga SET funcao='Contato Comercial', tipo='T', localTrab='Santo André', escolaridade='Ensino Médio Completo', horario='Seg. a Sex. 07:30 as 17:00', beneficios='Vale-Trasnporte, Vale-Refeição e Vale-Alimentação', descricao='Experiência em vendas na área de serviços, atendimento a clientes, Habilitação Cat B. Desejável conhecimentos na área de Recursos Humanos', ID_CLIENTE=1, fechamento='A', dataAlteracao=now(), destaque='', ID_USUARIO=1 , salario=15000.00 WHERE IDVAGA = 1;
@@ -134,6 +160,16 @@ GROUP BY(c.IDCLIENTE);
 UPDATE tb_vaga SET destaque = 'S' WHERE IDVAGA=33;
 
 SELECT funcao, tipo, c.nomeCidade as cidade, e.siglaEstado as estado, escolaridade, horario, beneficios, descricao, destaque FROM tb_vaga INNER JOIN tb_cidade AS c ON ID_CIDADE = c.IDCIDADE INNER JOIN tb_estado AS e ON c.ID_ESTADO = e.IDESTADO WHERE destaque='S' AND fechamento='A' ORDER BY dataCriacao DESC;
+
+
+/*Select com soma de 30 dias na data de criação para cálculo do tempo de validade da vaga*/
+
+SELECT funcao, tipo, c.nomeCidade as cidade, e.siglaEstado as estado, escolaridade, horario, beneficios, descricao, destaque, dataCriacao, 
+DATE_ADD(dataCriacao, INTERVAL 30 DAY) as dataValidade FROM tb_vaga
+INNER JOIN tb_cidade AS c ON ID_CIDADE = c.IDCIDADE 
+INNER JOIN tb_estado AS e ON c.ID_ESTADO = e.IDESTADO 
+WHERE fechamento='A' ORDER BY funcao;
+
 
 /* ADD DATA */
 

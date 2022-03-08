@@ -344,7 +344,8 @@ article p {
 /* Fim estilos página inicial */
 /*----------------------------*/
 
-a.curriculo-back {
+a.curriculo-back,
+a.cadastro {
   text-decoration: none;
   text-align: center;
   align-self: center;
@@ -356,6 +357,12 @@ a.curriculo-back {
   width: 50%;
   min-width: 150px;
   border-radius: 30px;
+}
+
+a.curriculo-back:hover,
+a.cadastro:hover {
+  background: #1e5373;
+  color: #b0cedf;
 }
 
 section.conteudo {
@@ -523,4 +530,15 @@ section.conteudo h3.flex-container-center {
   background-color: #336988;
   border-radius: 50%;
   padding: 10px;
+}
+
+/* Cadastro ou envio */
+
+div.select {
+  display: flex;
+  flex-direction: column;
+}
+
+div.select h1 {
+  margin-bottom: 150px;
 }

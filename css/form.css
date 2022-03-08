@@ -1,8 +1,9 @@
-.form_email{
+.form_email {
   background-color: #7aa5bf;
 }
 
-form h2 {
+form h1,
+h2 {
   font-family: 'Caveat', cursive;
   margin: 10px;
   color: #1e5373;
@@ -74,9 +75,13 @@ button {
   width: 200px;
   height: 50px;
   color: #fff;
-  background: #1e5373;
+  background: #336988;
   margin: 15px auto;
   font-size: 20px;
+}
+button:hover {
+  color: #fff;
+  background: #1e5373;
 }
 
 label.breve {
