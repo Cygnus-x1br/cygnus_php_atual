@@ -109,7 +109,9 @@ ALTER TABLE tb_cliente DROP COLUMN estado;
 ALTER TABLE tb_vaga MODIFY beneficios VARCHAR(150);
 
 
-/* Alterações a serem efetuadas */
+/**************************************************************/
+
+/* ALTERAÇÕES A SEREM EFETUADAS */
 
 CREATE TABLE tb_area_interesse (
     IDAREA INT PRIMARY KEY AUTO_INCREMENT,
@@ -133,6 +135,11 @@ FOREIGN KEY(ID_AREA) REFERENCES tb_area_interesse(IDAREA);
 
 ALTER TABLE tb_candidato ADD CONSTRAINT FK_CANDIDATO_CIDADE
 FOREIGN KEY(ID_CIDADE) REFERENCES tb_cidade(IDCIDADE);
+
+/* FIM DAS ALTERAÇÕES */
+
+
+/****************************************************************/
 
 /*QUERYS DE TESTE */
 
