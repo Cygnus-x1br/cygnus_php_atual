@@ -19,7 +19,7 @@ include('./menu.php');
 // $query_vagas = "SELECT funcao, tipo, localTrab, escolaridade, horario, beneficios, descricao FROM tb_vagas";
 // include('./head.php');
 
-$query_vagas = "SELECT funcao, tipo, c.nomeCidade as cidade, e.siglaEstado as estado, escolaridade, horario, beneficios, descricao, destaque FROM tb_vaga ";
+$query_vagas = "SELECT funcao, tipo, c.nomeCidade as cidade, e.siglaEstado as estado, escolaridade, horario, beneficios, descricao, destaque, dataCriacao FROM tb_vaga ";
 $query_vagas .= " INNER JOIN tb_cidade AS c ON ID_CIDADE = c.IDCIDADE INNER JOIN tb_estado AS e ON c.ID_ESTADO = e.IDESTADO WHERE fechamento='A' ORDER BY funcao";
 $lista_vagas = mysqli_query($conect, $query_vagas);
 // var_dump($lista_vagas);
@@ -38,11 +38,15 @@ if (!$lista_vagas) {
             while ($linha = mysqli_fetch_assoc($lista_vagas)) {
                 $funcao = $linha['funcao'];
                 $tipo = $linha['tipo'];
-                $localTrab = $linha['cidade'] . ' - ' . $linha['estado'];
+                $cidade = $linha['cidade'];
+                $estado = $linha['estado'];
+                $localTrab = $cidade . ' - ' . $estado;
                 $escolaridade = $linha['escolaridade'];
                 $horario = $linha['horario'];
                 $beneficios = $linha['beneficios'];
                 $descricao = $linha['descricao'];
+                $dataCriacao = $linha['dataCriacao'];
+
 
             ?>
                 <h4><?php echo $funcao ?></h4>
@@ -62,6 +66,31 @@ if (!$lista_vagas) {
                     <?php echo $descricao ?>
                 </p>
                 <div class="underline"></div>
+
+                <script type="application/ld+json">
+                    {
+                        "@context": "https://schema.org/",
+                        "@type": "JobPosting",
+                        "title": "<?php echo $funcao ?>",
+                        "description": "<?php echo '<p>' . $descricao . '</p>' ?>",
+                        "datePosted": "<?php echo $dataCriacao ?>",
+                        "jobLocation": {
+                            "@type": "Place",
+                            "address": {
+                                "@type": "PostalAddress",
+                                "addressLocality": "<?php echo $cidade ?>",
+                                "addressRegion": "<?php echo $estado ?>",
+                                "addressCountry": "BR"
+                            }
+                        },
+                        "employmentType": "FULL_TIME",
+                        "hiringOrganization": {
+                            "@type": "Organization",
+                            "name": "Cygnus Recursos Humanos",
+                            "sameAs": "https://cygnusrh.com.br"
+                        }
+                    }
+                </script>
 
             <?php
             }
