@@ -5,6 +5,7 @@
 include('./head.php');
 ?>
 <title>Cygnus * Envie seu curriculo</title>
+<link rel="stylesheet" href="./css/form.css" />
 </head>
 <?php
 include('./menu.php');
