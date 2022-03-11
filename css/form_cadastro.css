@@ -2,6 +2,10 @@
   background-color: #7aa5bf;
 }
 
+form {
+  margin-bottom: 30px;
+}
+
 form h1,
 h2 {
   font-family: 'Caveat', cursive;
@@ -10,37 +14,55 @@ h2 {
   font-size: 40px;
 }
 
+label {
+  font-size: 14px;
+}
+
+input[type='submit'] {
+  border: 1px solid #ccc;
+  background-color: #b0cedf;
+  margin-top: 30px;
+  color: #000;
+  text-align: center;
+}
+
 .container form {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 0px;
+  margin: 0 0;
+  padding-bottom: 50px;
 }
 
-.form_1 {
+.col_1 {
   display: flex;
   flex-direction: column;
   width: 75%;
   align-items: center;
 }
-.form_1 label,
+.col_1 label,
 input {
   text-align: left;
   margin-top: 15px;
-  color: #fff;
-  font-size: 20px;
+  color: #ccc;
+
+  font-weight: 100;
   width: 100%;
 }
 
-.form_2 {
+.col_2 {
   display: flex;
-  width: 75%;
-  justify-content: space-around;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
 }
 
-.form_2.form_1 {
-  width: 10%;
+div.col_2 > div.col_1:nth-child(1) {
+  width: 20%;
+}
+div.col_2 > div.col_1:nth-child(2) {
+  width: 70%;
 }
 
 input,
@@ -50,6 +72,17 @@ select {
   font-size: 18px;
   font-weight: 100;
   padding-left: 5px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  color: #000;
+}
+
+select {
+  width: 100%;
+}
+
+input:focus {
+  background-color: #eee;
 }
 
 /*
