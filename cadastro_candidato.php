@@ -23,11 +23,9 @@ if (!$query_send_est) {
 }
 ?>
 <?php
-$consulta_cidade = 'SELECT * FROM tb_cidade ORDER BY nomeCidade';
-$query_send_cid = mysqli_query($conect, $consulta_cidade);
-if (!$query_send_cid) {
-    die('Falha na conexão');
-}
+
+$mensagem = "<section class='conteudo'><h1>CPF já cadastrado</h1></section><div class='btn'><a href='./cadastro_candidato.php' class='cadastro'>Voltar</a></div>";
+
 
 if (isset($_POST['nome'])) {
     if (!empty($_POST['nome'])) {
@@ -44,30 +42,36 @@ if (isset($_POST['nome'])) {
     $funcao = $_POST['funcao'];
     $curriculo = $_FILES['curriculo'];
 
-    $curr_temp = $curriculo['tmp_name'];
-    $diretorio_curriculo = './curriculos';
-    $arquivo_final = $diretorio_curriculo . "/" . $nomeCandidato . strrchr($curriculo['name'], '.');
+    if ($curriculo['error'] === 0) {
 
-    move_uploaded_file($curr_temp, $arquivo_final);
+        $curr_temp = $curriculo['tmp_name'];
+        $diretorio_curriculo = './curriculos';
+        $arquivo_final = $diretorio_curriculo . "/" . $nomeCandidato . strrchr($curriculo['name'], '.');
 
-    echo "$nomeCandidato , $CPF , $email , $telefone , $endereco , $estado , $cidade , $funcao, $arquivo_final </br>";
-    print_r($curriculo);
+        move_uploaded_file($curr_temp, $arquivo_final);
+    } else {
+        $arquivo_final = '';
+    }
+
+    $consulta_candidato = "SELECT CPF FROM tb_candidato WHERE CPF = '$CPF'";
+
+    $query_send_cpf = mysqli_query($conect, $consulta_candidato);
+
+    if (mysqli_fetch_assoc($query_send_cpf)) {
+        die($mensagem);
+    }
 
     $insere_candidato = "INSERT INTO tb_candidato (nomeCandidato, email, telefone, CPF, endereco, ID_CIDADE, funcao, curriculo) ";
-    $insere_candidato .= " VALUES($nomeCandidato, $email, $telefone, $CPF, $endereco, $cidade, $funcao, $curriculo)";
+    $insere_candidato .= " VALUES('$nomeCandidato', '$email', '$telefone', '$CPF', '$endereco', $cidade, '$funcao', '$arquivo_final')";
 
     $query_send = mysqli_query($conect, $insere_candidato);
 }
 ?>
 
 <div class="container">
-
-
-
     <form class="form_cadastro" action="./cadastro_candidato.php" method="POST" enctype="multipart/form-data">
         <h1>Cadastre-se</h1>
         <div class="col_1">
-
             <label for="">Nome</label>
             <input type="text" name="nome" autofocus>
             <label for="">CPF</label>
@@ -85,7 +89,7 @@ if (isset($_POST['nome'])) {
                         <?php
                         while ($show_estado = mysqli_fetch_assoc($query_send_est)) {
                         ?>
-                            <option value="<?php echo $show_estado['IDESTADO'] ?>"><?php echo $show_estado['IDESTADO'], $show_estado['siglaEstado'] ?></option>
+                            <option value="<?php echo $show_estado['IDESTADO'] ?>"><?php echo $show_estado['siglaEstado'] ?></option>
                         <?php
                         }
                         ?>
@@ -95,6 +99,11 @@ if (isset($_POST['nome'])) {
                     <label for="">Cidade</label>
                     <select name="cidade" id="">
                         <?php
+                        $consulta_cidade = 'SELECT * FROM tb_cidade ORDER BY nomeCidade';
+                        $query_send_cid = mysqli_query($conect, $consulta_cidade);
+                        if (!$query_send_cid) {
+                            die('Falha na conexão');
+                        }
                         while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
                         ?>
                             <option value="<?php echo $show_cidade['IDCIDADE'] ?>"><?php echo $show_cidade['nomeCidade'] ?></option>
@@ -112,22 +121,11 @@ if (isset($_POST['nome'])) {
         </div>
     </form>
 
-
-
-
-
     <?php
     include('./aside.php');
     ?>
 
 </div>
-
-
-
-
-
-
-
 <?php
 
 include('./bottom.php');
