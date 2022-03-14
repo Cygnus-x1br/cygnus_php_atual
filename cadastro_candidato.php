@@ -12,13 +12,27 @@ include('./head.php');
 <title>Cygnus Recursos Humanos * Portal de empregos e serviços</title>
 <link rel="stylesheet" href="./css/form_cadastro.css">
 <script>
+    let js_estado = 1;
+
     function goBack() {
         window.history.back();
     }
 
     function teste() {
-        const js_estado = document.getElementById('estado').value;
-        return console.log(js_estado);
+        js_estado = document.getElementById('estado').value;
+        selectCity(js_estado);
+    }
+
+    function selectCity(estado) {
+        console.log(estado);
+        let cidade = document.getElementById('cidadeTeste');
+        cidade.innerHTML = '<?php
+                            $estado = "estado";
+                            echo $estado;
+                            $consulta_cidade = "SELECT * FROM tb_cidade WHERE ID_ESTADO = $estado ORDER BY nomeCidade"
+                            ?>';
+
+
     }
 </script>
 </head>
@@ -107,19 +121,19 @@ if (isset($_POST['nome'])) {
                 </div>
                 <div class="col_1">
                     <label for="">Cidade</label>
-                    <select name="cidade" id="" onfocus="<?php
-                                                            $consulta_cidade = 'SELECT * FROM tb_cidade ORDER BY nomeCidade';
-                                                            $query_send_cid = mysqli_query($conect, $consulta_cidade);
-                                                            ?>">
+                    <div id="cidadeTeste"></div>
+                    <select name="cidade" id="">
                         <?php
-                        if (!$query_send_cid) {
-                            die('Falha na conexão');
-                        }
-                        while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
+                        //$query_send_cid = mysqli_query($conect, $consulta_cidade);
+                        //if (!$query_send_cid) {
+                        //    die('Falha na conexão');
+                        //}
+                        //while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
+                        //
                         ?>
-                            <option value="<?php echo $show_cidade['IDCIDADE'] ?>"><?php echo $show_cidade['nomeCidade'] ?></option>
+                        <option value="<?php echo $show_cidade['IDCIDADE'] ?>"><?php echo $show_cidade['nomeCidade'] ?></option>
                         <?php
-                        }
+                        //}
                         ?>
                     </select>
                 </div>
