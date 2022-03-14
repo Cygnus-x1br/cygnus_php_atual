@@ -11,12 +11,22 @@ include('./head.php');
 ?>
 <title>Cygnus Recursos Humanos * Portal de empregos e serviços</title>
 <link rel="stylesheet" href="./css/form_cadastro.css">
+<script>
+    function goBack() {
+        window.history.back();
+    }
+
+    function teste() {
+        const js_estado = document.getElementById('estado').value;
+        return console.log(js_estado);
+    }
+</script>
 </head>
 <?php
 include('./menu.php');
 ?>
 <?php
-$consulta_estado = 'SELECT * FROM tb_estado';
+$consulta_estado = 'SELECT * FROM tb_estado ORDER BY siglaEstado';
 $query_send_est = mysqli_query($conect, $consulta_estado);
 if (!$query_send_est) {
     die('Falha na conexão');
@@ -24,7 +34,7 @@ if (!$query_send_est) {
 ?>
 <?php
 
-$mensagem = "<section class='conteudo'><h1>CPF já cadastrado</h1></section><div class='btn'><a href='./cadastro_candidato.php' class='cadastro'>Voltar</a></div>";
+$mensagem = "<div class='container'><section class='conteudo'><h1>CPF já cadastrado</h1><button onclick='goBack()'>Voltar</button></section></div>";
 
 
 if (isset($_POST['nome'])) {
@@ -85,7 +95,7 @@ if (isset($_POST['nome'])) {
             <div class="col_2">
                 <div class="col_1">
                     <label for="">Estado</label>
-                    <select name="estado" id="">
+                    <select name="estado" id="estado" onchange="teste()">
                         <?php
                         while ($show_estado = mysqli_fetch_assoc($query_send_est)) {
                         ?>
@@ -97,10 +107,11 @@ if (isset($_POST['nome'])) {
                 </div>
                 <div class="col_1">
                     <label for="">Cidade</label>
-                    <select name="cidade" id="">
+                    <select name="cidade" id="" onfocus="<?php
+                                                            $consulta_cidade = 'SELECT * FROM tb_cidade ORDER BY nomeCidade';
+                                                            $query_send_cid = mysqli_query($conect, $consulta_cidade);
+                                                            ?>">
                         <?php
-                        $consulta_cidade = 'SELECT * FROM tb_cidade ORDER BY nomeCidade';
-                        $query_send_cid = mysqli_query($conect, $consulta_cidade);
                         if (!$query_send_cid) {
                             die('Falha na conexão');
                         }
@@ -131,5 +142,6 @@ if (isset($_POST['nome'])) {
 include('./bottom.php');
 
 ?>
+
 
 </html>

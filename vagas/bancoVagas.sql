@@ -126,7 +126,7 @@ ALTER TABLE tb_candidato ADD COLUMN ID_AREA INT;
 ALTER TABLE tb_candidato ADD COLUMN funcao VARCHAR(60);
 /*campo curriculo em princípio armazena caminho para o arquivo. posso mudar futuramente para blob para armazenar o arquivo */
 ALTER TABLE tb_candidato ADD COLUMN curriculo VARCHAR(100);
-ALTER TABLE tb_candidato ADD COLUMN outra_cidade VARCHAR(60);
+-- ALTER TABLE tb_candidato ADD COLUMN outra_cidade VARCHAR(60);
 
 -- ALTER TABLE tb_area_interesse DROP FOREIGN KEY FK_CANDIDATO_AREA;
 
