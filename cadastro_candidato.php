@@ -46,13 +46,17 @@ if (isset($_POST['nome'])) {
 
     $curr_temp = $curriculo['tmp_name'];
     $diretorio_curriculo = './curriculos';
+    $arquivo_final = $diretorio_curriculo . "/" . $nomeCandidato . strrchr($curriculo['name'], '.');
 
-    move_uploaded_file($curr_temp, $diretorio_curriculo . "/" . $nomeCandidato . "." . strrchr($curriculo['name'], '.'));
+    move_uploaded_file($curr_temp, $arquivo_final);
 
-    print_r($nomeCandidato, $CPF, $email, $telefone, $endereco, $estado, $cidade, $funcao, $curriculo);
+    echo "$nomeCandidato , $CPF , $email , $telefone , $endereco , $estado , $cidade , $funcao, $arquivo_final </br>";
+    print_r($curriculo);
 
+    $insere_candidato = "INSERT INTO tb_candidato (nomeCandidato, email, telefone, CPF, endereco, ID_CIDADE, funcao, curriculo) ";
+    $insere_candidato .= " VALUES($nomeCandidato, $email, $telefone, $CPF, $endereco, $cidade, $funcao, $curriculo)";
 
-    // $query_send = mysqli_query($conect, $insere_cliente);
+    $query_send = mysqli_query($conect, $insere_candidato);
 }
 ?>
 
@@ -77,11 +81,11 @@ if (isset($_POST['nome'])) {
             <div class="col_2">
                 <div class="col_1">
                     <label for="">Estado</label>
-                    <select name="cidade" id="">
+                    <select name="estado" id="">
                         <?php
                         while ($show_estado = mysqli_fetch_assoc($query_send_est)) {
                         ?>
-                            <option value="<?php echo $show_estado['IDESTADO'] ?>"><?php echo $show_estado['siglaEstado'] ?></option>
+                            <option value="<?php echo $show_estado['IDESTADO'] ?>"><?php echo $show_estado['IDESTADO'], $show_estado['siglaEstado'] ?></option>
                         <?php
                         }
                         ?>
