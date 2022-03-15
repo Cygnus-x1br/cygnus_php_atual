@@ -12,27 +12,8 @@ include('./head.php');
 <title>Cygnus Recursos Humanos * Portal de empregos e serviços</title>
 <link rel="stylesheet" href="./css/form_cadastro.css">
 <script>
-    let js_estado = 1;
-
     function goBack() {
         window.history.back();
-    }
-
-    function teste() {
-        js_estado = document.getElementById('estado').value;
-        selectCity(js_estado);
-    }
-
-    function selectCity(estado) {
-        console.log(estado);
-        let cidade = document.getElementById('cidadeTeste');
-        cidade.innerHTML = '<?php
-                            $estado = "estado";
-                            echo $estado;
-                            $consulta_cidade = "SELECT * FROM tb_cidade WHERE ID_ESTADO = $estado ORDER BY nomeCidade"
-                            ?>';
-
-
     }
 </script>
 </head>
@@ -40,9 +21,16 @@ include('./head.php');
 include('./menu.php');
 ?>
 <?php
+
 $consulta_estado = 'SELECT * FROM tb_estado ORDER BY siglaEstado';
 $query_send_est = mysqli_query($conect, $consulta_estado);
 if (!$query_send_est) {
+    die('Falha na conexão');
+}
+
+$consulta_cidade = "SELECT * FROM tb_cidade ORDER BY nomeCidade";
+$query_send_cid = mysqli_query($conect, $consulta_cidade);
+if (!$query_send_cid) {
     die('Falha na conexão');
 }
 ?>
@@ -107,7 +95,7 @@ if (isset($_POST['nome'])) {
             <label for="">Endereço</label>
             <input type="text" name="endereco">
             <div class="col_2">
-                <div class="col_1">
+                <div class="col_1" style="width: 20%;">
                     <label for="">Estado</label>
                     <select name="estado" id="estado" onchange="teste()">
                         <?php
@@ -119,21 +107,16 @@ if (isset($_POST['nome'])) {
                         ?>
                     </select>
                 </div>
-                <div class="col_1">
+                <div class="col_1" style="width: 70%;">
                     <label for="">Cidade</label>
-                    <div id="cidadeTeste"></div>
+
                     <select name="cidade" id="">
                         <?php
-                        //$query_send_cid = mysqli_query($conect, $consulta_cidade);
-                        //if (!$query_send_cid) {
-                        //    die('Falha na conexão');
-                        //}
-                        //while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
-                        //
+                        while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
                         ?>
-                        <option value="<?php echo $show_cidade['IDCIDADE'] ?>"><?php echo $show_cidade['nomeCidade'] ?></option>
+                            <option value="<?php echo $show_cidade['IDCIDADE'] ?>"> <?php echo $show_cidade['nomeCidade'] ?> </option>
                         <?php
-                        //}
+                        }
                         ?>
                     </select>
                 </div>
@@ -143,6 +126,95 @@ if (isset($_POST['nome'])) {
             <label for="">Anexe seu Curriculo</label>
             <input type="file" name="curriculo" id="">
             <input type="submit" value="Gravar dados">
+            <fieldset>
+                <legend>Dados Complementares (opcional)</legend>
+                <div class="col_2">
+                    <div class="col_1" style="width: 40%;">
+                        <label for="">Deseja informar seu genero?</label>
+                        <input type="text" name="genero">
+                    </div>
+                    <div class="col_1" style="width: 40%;">
+                        <label for="">Deseja informar sua raça?</label>
+                        <input type="text" name="raca">
+                    </div>
+                </div>
+                <div class="col_2">
+                    <div class="col_1" style="width: 40%;">
+
+                        <label for="">Estado Civil</label>
+                        <select name="estado_civil" id="">
+                            <option value="solteiro">Solteiro</option>
+                            <option value="casado">Casado</option>
+                            <option value=uniao>União Estável</option>
+                            <option value="divorciado">Divorciado/Separado</option>
+                            <option value="viuvo">Viúvo</option>
+                        </select>
+                    </div>
+                    <div class="col_1" style="width: 40%;">
+
+                        <label for="">Data de Nascimento</label>
+                        <input type="date" name="nascto">
+                    </div>
+                </div>
+                <h4>Histórico Profissional</h4>
+                <fieldset class="historico">
+                    <div class="col">
+
+                        <label for="">De:</label>
+                        <input type="month" name="inicio">
+                    </div>
+                    <div class="col">
+
+                        <label for="">até:</label>
+                        <input type="month" name="term">
+                    </div>
+                    <div class="col">
+
+                        <label for="">Empresa</label>
+                        <input type="text" name="empresa">
+                    </div>
+                    <div class="col">
+
+                        <label for="">Cargo</label>
+                        <input type="text" name='cargo'>
+                    </div>
+                    <div class="right-btn">
+                        <button class="btn_add" onclick="adicionaLinha()">Adicionar</button>
+                    </div>
+                </fieldset>
+                <div class="col">
+                    <h4>Escolaridade</h4>
+                    <label for="">Escolaridade</label>
+                    <select name="escolaridade" id="">
+                        <option value="analfabeto">Analfabeto</option>
+                        <option value="fund_inc">Ensino Fundamental Incompleto</option>
+                        <option value="fund_compl">Ensino Fundamental Completo</option>
+                        <option value="med_inc">Ensino Médio Incompleto</option>
+                        <option value="med_compl" selected>Ensino Médio Completo</option>
+                        <option value="sup_inc">Superior Incompleto</option>
+                        <option value="sup_compl">Superior Completo</option>
+                    </select>
+                </div>
+                <fieldset class="escolaridade">
+
+                    <legend>Cursos, especializações, línguas</legend>
+                    <div class="col">
+                        <label for="">Título do curso</label>
+                        <input type="text" name="curso">
+                    </div>
+                    <div class="col" style="width: 60%;">
+                        <label for="">Instituição</label>
+                        <input type="text" name="escola">
+                    </div>
+                    <div class="col" style="width: 30%;">
+                        <label for="">Ano Conclusão</label>
+                        <input type="month" name="conclusao">
+                    </div>
+                    <div class="right-btn">
+                        <button class="btn_add" onclick="adicionaLinha()">Adicionar</button>
+                    </div>
+                </fieldset>
+            </fieldset>
         </div>
     </form>
 
@@ -156,6 +228,12 @@ if (isset($_POST['nome'])) {
 include('./bottom.php');
 
 ?>
+<script>
+    function adicionaLinha() {
+        let curso = document.getElementsByName('curso');
+        console.log(curso)
+    }
+</script>
 
 
 </html>

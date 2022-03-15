@@ -365,6 +365,23 @@ a.cadastro:hover {
   color: #b0cedf;
 }
 
+a.fale_conosco {
+  text-decoration: none;
+  text-align: center;
+  align-self: center;
+  margin-top: 25px;
+  padding: 15px;
+  background: #336988;
+  color: #fff;
+  width: 20%;
+  min-width: 150px;
+  border-radius: 30px;
+}
+a.fale_conosco:hover {
+  background: #1e5373;
+  color: #b0cedf;
+}
+
 button {
   padding: 15px;
   background-color: #336988;

@@ -29,6 +29,7 @@ include('./menu.php');
                 <div class="email">
                     <span>Vagas em Outras localidades: </span><a href="mailto:curriculomogiguacu@hotmail.com">curriculomogiguacu@hotmail.com</a>
                 </div>
+                <a class="fale_conosco" href="./formulario.php">Envie seu curriculo</a>
             </div>
             <div class="email-title">
                 <h4>Outros contatos</h4>
@@ -41,6 +42,8 @@ include('./menu.php');
                 <div class="email">
                     <span>Departamento Pessoal: </span><a href="mailto:administrativo@cygnusrh.com.br">administrativo@cygnusrh.com.br</a>
                 </div>
+
+                <a class="fale_conosco" href="./fale_conosco.php">Fale conosco</a>
             </div>
             <h4>Nossos endereços:</h4>
             <article class="enderecos">

@@ -14,6 +14,14 @@ h2 {
   font-size: 40px;
 }
 
+h4 {
+  font-family: 'Caveat', cursive;
+  margin: 10px;
+  color: #1e5373;
+  font-size: 30px;
+  align-self: center;
+}
+
 label {
   font-size: 14px;
 }
@@ -58,12 +66,12 @@ input {
   justify-content: space-between;
 }
 
-div.col_2 > div.col_1:nth-child(1) {
+/* div.col_2 > div.col_1:nth-child(1) {
   width: 20%;
 }
 div.col_2 > div.col_1:nth-child(2) {
   width: 70%;
-}
+} */
 
 input,
 select {
@@ -83,6 +91,42 @@ select {
 
 input:focus {
   background-color: #eee;
+}
+
+fieldset {
+  margin: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+}
+
+fieldset h4 {
+  justify-content: center;
+}
+
+fieldset.historico,
+fieldset.escolaridade {
+  display: flex;
+}
+
+fieldset.historico div:nth-of-type(3),
+fieldset.historico div:nth-of-type(4) {
+  width: 100%;
+}
+fieldset.escolaridade div:nth-of-type(1) {
+  width: 100%;
+}
+
+div.right-btn {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+
+button.btn_add {
+  margin-top: 10px;
 }
 
 /*

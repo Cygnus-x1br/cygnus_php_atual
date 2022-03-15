@@ -65,6 +65,8 @@ include('./menu.php');
                 candidatos.
             </p>
         </article>
+        <h3>Gostaria de mais informações?</h3>
+        <a class="curriculo-back" href="./fale_conosco.php">Fale conosco</a>
     </section>
 
     <?php
