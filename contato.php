@@ -2,12 +2,12 @@
 <html lang="pt-br">
 
 <?php
-include('./head.php');
+include('./include/head.php');
 ?>
 <title>Cygnus * Entre em contato</title>
 </head>
 <?php
-include('./menu.php');
+include('./include/menu.php');
 ?>
 
 <div class="container">
@@ -65,14 +65,16 @@ include('./menu.php');
 
 
     <?php
-    include('./aside.php');
+    include('./include/aside.php');
     ?>
 
 
 </div>
 
 <?php
-include('./bottom.php');
+include('./include/bottom.php');
 ?>
+
+</body>
 
 </html>

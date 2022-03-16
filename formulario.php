@@ -2,13 +2,13 @@
 <html lang="pt-br">
 
 <?php
-include('./head.php');
+include('./include/head.php');
 ?>
 <title>Cygnus * Envie seu curriculo</title>
 <link rel="stylesheet" href="./css/form.css" />
 </head>
 <?php
-include('./menu.php');
+include('./include/menu.php');
 $page_link = 'https://cygnusrh.com.br/'
 ?>
 
@@ -38,13 +38,15 @@ $page_link = 'https://cygnusrh.com.br/'
 
 
     <?php
-    include('./aside.php');
+    include('./include/aside.php');
     ?>
 
 </div>
 
 <?php
-include('./bottom.php');
+include('./include/bottom.php');
 ?>
+
+</body>
 
 </html>

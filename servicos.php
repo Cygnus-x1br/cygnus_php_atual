@@ -2,12 +2,12 @@
 <html lang="pt-br">
 
 <?php
-include('./head.php');
+include('./include/head.php');
 ?>
 <title>Cygnus * Nossos serviços, Temporários, Terceirizados, Seleção</title>
 </head>
 <?php
-include('./menu.php');
+include('./include/menu.php');
 ?>
 
 
@@ -66,18 +66,20 @@ include('./menu.php');
             </p>
         </article>
         <h3>Gostaria de mais informações?</h3>
-        <a class="curriculo-back" href="./fale_conosco.php">Fale conosco</a>
+        <a class="curriculo-back" href="./forms/fale_conosco.php">Fale conosco</a>
     </section>
 
     <?php
-    include('./aside.php');
+    include('./include/aside.php');
     ?>
 
 
 </div>
 
 <?php
-include('./bottom.php');
+include('./include/bottom.php');
 ?>
+
+</body>
 
 </html>

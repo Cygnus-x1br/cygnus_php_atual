@@ -57,6 +57,9 @@
   .email a {
     margin-bottom: 15px;
   }
+  a.fale_conosco {
+    margin-bottom: 15px;
+  }
 }
 
 @media screen and (max-width: 620px) {

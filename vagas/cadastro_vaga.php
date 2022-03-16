@@ -52,6 +52,8 @@ if (isset($_POST['funcao'])) {
     } else {
         $destaque = '';
     };
+    echo $salario;
+
     $insere_vaga = "INSERT INTO tb_vaga ";
     $insere_vaga .= "VALUES(null, '$funcao', '$tipo', '$cidade', '$escolaridade', '$horario', '$beneficios', '$descricao', $cliente, now(),'A', null, '$destaque', $salario, $user, $cidade)";
     $query_send = mysqli_query($conect, $insere_vaga);
@@ -96,7 +98,7 @@ if (isset($_POST['funcao'])) {
                 </select>
                 <input type="text" name="escolaridade" placeholder="Escolaridade">
                 <input type="text" name="horario" placeholder="Horário de trabalho">
-                <input type="text" name="salario" placeholder="Salário">
+                <input type="text" class="valor" name="salario" placeholder="Salário">
                 <input type="text" name="beneficios" placeholder="Beneficios">
                 <textarea name="descricao" placeholder="Descrição atividades" id=""></textarea>
                 <select name="cliente" id="">
@@ -124,6 +126,10 @@ if (isset($_POST['funcao'])) {
             <a href="./index.php">Voltar ao Inicio</a>
         </div>
     </div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/jquery.mask.min.js"></script>
+    <script src="../js/comon_jquery.js"></script>
+
 </body>
 
 </html>

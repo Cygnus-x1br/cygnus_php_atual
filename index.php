@@ -7,12 +7,12 @@ require_once('./_conexao/conexao.php');
 <!DOCTYPE html>
 <html lang="pt-br">
 <?php
-include('./head.php');
+include('./include/head.php');
 ?>
 <title>Cygnus Recursos Humanos * Portal de empregos e serviços</title>
 </head>
 <?php
-include('./menu.php');
+include('./include/menu.php');
 ?>
 <?php
 $query_vagas = "SELECT funcao, tipo, c.nomeCidade as cidade, e.siglaEstado as estado, escolaridade, horario, beneficios, descricao, destaque FROM tb_vaga ";
@@ -70,7 +70,7 @@ if (!$lista_vagas) {
     </section>
 
     <?php
-    include('./aside.php');
+    include('./include/aside.php');
     ?>
 
 </div>
@@ -96,9 +96,9 @@ if (!$lista_vagas) {
 
 
 <?php
-
-include('./bottom.php');
-
+include('./include/bottom.php');
 ?>
+
+</body>
 
 </html>

@@ -63,10 +63,10 @@ if (isset($_POST['nomeCliente'])) {
                     }
                     ?>
                 </select>
-                <input type="text" name="CNPJ" placeholder="CNPJ">
+                <input type="text" class="cnpj" name="CNPJ" placeholder="CNPJ">
                 <input type="text" name="contato" placeholder="Contato">
                 <input type="text" name="email" placeholder="E-Mail">
-                <input type="text" name="telefone" placeholder="Telefone">
+                <input type="text" class='tel' name="telefone" placeholder="Telefone">
                 <input type="submit" value="Adicionar cliente">
             </form>
         </div>
@@ -76,6 +76,9 @@ if (isset($_POST['nomeCliente'])) {
             <a href="./index.php">Voltar ao Inicio</a>
         </div>
     </div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/jquery.mask.min.js"></script>
+    <script src="../js/comon_jquery.js"></script>
 </body>
 
 </html>

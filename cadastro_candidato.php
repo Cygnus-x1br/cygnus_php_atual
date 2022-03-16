@@ -1,24 +1,26 @@
 <?php
-
 require_once('./_conexao/conexao.php');
-
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <?php
-include('./head.php');
+include('./include/head.php');
 ?>
+
 <title>Cygnus Recursos Humanos * Portal de empregos e serviços</title>
 <link rel="stylesheet" href="./css/form_cadastro.css">
+
 <script>
     function goBack() {
         window.history.back();
     }
 </script>
+
 </head>
 <?php
-include('./menu.php');
+include('./include/menu.php');
 ?>
 <?php
 
@@ -55,27 +57,22 @@ if (isset($_POST['nome'])) {
     $curriculo = $_FILES['curriculo'];
 
     if ($curriculo['error'] === 0) {
-
         $curr_temp = $curriculo['tmp_name'];
         $diretorio_curriculo = './curriculos';
         $arquivo_final = $diretorio_curriculo . "/" . $nomeCandidato . strrchr($curriculo['name'], '.');
-
         move_uploaded_file($curr_temp, $arquivo_final);
     } else {
         $arquivo_final = '';
     }
 
     $consulta_candidato = "SELECT CPF FROM tb_candidato WHERE CPF = '$CPF'";
-
     $query_send_cpf = mysqli_query($conect, $consulta_candidato);
-
     if (mysqli_fetch_assoc($query_send_cpf)) {
         die($mensagem);
     }
 
     $insere_candidato = "INSERT INTO tb_candidato (nomeCandidato, email, telefone, CPF, endereco, ID_CIDADE, funcao, curriculo) ";
     $insere_candidato .= " VALUES('$nomeCandidato', '$email', '$telefone', '$CPF', '$endereco', $cidade, '$funcao', '$arquivo_final')";
-
     $query_send = mysqli_query($conect, $insere_candidato);
 }
 ?>
@@ -87,17 +84,17 @@ if (isset($_POST['nome'])) {
             <label for="">Nome</label>
             <input type="text" name="nome" autofocus>
             <label for="">CPF</label>
-            <input type="text" name="CPF">
+            <input type="text" class="cpf" name="CPF">
             <label for="">E-mail</label>
             <input type="text" name="email">
             <label for="">Telefone</label>
-            <input type="text" name="telefone">
+            <input type="text" class="tel" name="telefone">
             <label for="">Endereço</label>
             <input type="text" name="endereco">
             <div class="col_2">
                 <div class="col_1" style="width: 20%;">
                     <label for="">Estado</label>
-                    <select name="estado" id="estado" onchange="teste()">
+                    <select name="estado" id="estado" onchange="teste(value)">
                         <?php
                         while ($show_estado = mysqli_fetch_assoc($query_send_est)) {
                         ?>
@@ -126,7 +123,9 @@ if (isset($_POST['nome'])) {
             <label for="">Anexe seu Curriculo</label>
             <input type="file" name="curriculo" id="">
             <input type="submit" value="Gravar dados">
+
             <fieldset>
+
                 <legend>Dados Complementares (opcional)</legend>
                 <div class="col_2">
                     <div class="col_1" style="width: 40%;">
@@ -140,7 +139,6 @@ if (isset($_POST['nome'])) {
                 </div>
                 <div class="col_2">
                     <div class="col_1" style="width: 40%;">
-
                         <label for="">Estado Civil</label>
                         <select name="estado_civil" id="">
                             <option value="solteiro">Solteiro</option>
@@ -156,6 +154,7 @@ if (isset($_POST['nome'])) {
                         <input type="date" name="nascto">
                     </div>
                 </div>
+
                 <h4>Histórico Profissional</h4>
                 <fieldset class="historico">
                     <div class="col">
@@ -182,6 +181,7 @@ if (isset($_POST['nome'])) {
                         <button class="btn_add" onclick="adicionaLinha()">Adicionar</button>
                     </div>
                 </fieldset>
+
                 <div class="col">
                     <h4>Escolaridade</h4>
                     <label for="">Escolaridade</label>
@@ -196,7 +196,6 @@ if (isset($_POST['nome'])) {
                     </select>
                 </div>
                 <fieldset class="escolaridade">
-
                     <legend>Cursos, especializações, línguas</legend>
                     <div class="col">
                         <label for="">Título do curso</label>
@@ -214,26 +213,38 @@ if (isset($_POST['nome'])) {
                         <button class="btn_add" onclick="adicionaLinha()">Adicionar</button>
                     </div>
                 </fieldset>
+
             </fieldset>
         </div>
     </form>
 
     <?php
-    include('./aside.php');
+    include('./include/aside.php');
     ?>
 
 </div>
 <?php
-
-include('./bottom.php');
-
+include('./include/bottom.php');
 ?>
+<div class="teste"></div>
+
+<script src="./js/jquery-3.6.0.min.js"></script>
+<script src="./js/jquery.mask.min.js"></script>
+<script src="./js/comon_jquery.js"></script>
 <script>
     function adicionaLinha() {
-        let curso = document.getElementsByName('curso');
-        console.log(curso)
+        let curso = $('curso');
+        console.log(curso);
     }
+
+
+    function teste(value) {
+        const estado = value;
+        console.log(estado)
+
+    };
 </script>
 
+</body>
 
 </html>
