@@ -69,6 +69,7 @@ if (isset($_POST['nome'])) {
 <div class="container">
     <form class="form_cadastro" action="./cadastro_candidato.php" method="POST" enctype="multipart/form-data">
         <h1>Cadastre-se</h1>
+        <div id="testeFunçãoPHP"></div>
         <div class="col_1">
             <label for="">Nome</label>
             <input type="text" name="nome" autofocus>
@@ -88,7 +89,9 @@ if (isset($_POST['nome'])) {
                         $query_send_est = consultaEstado($conect);
                         while ($show_estado = mysqli_fetch_assoc($query_send_est)) {
                         ?>
-                            <option value="<?php echo $show_estado['IDESTADO'] ?>"><?php echo $show_estado['siglaEstado'] ?></option>
+                            <option value="<?php echo $show_estado['IDESTADO']; ?>" <?php if ($show_estado['IDESTADO'] == 26) {
+                                                                                        echo ' selected';
+                                                                                    } ?>> <?php echo $show_estado['siglaEstado'] ?></option>
                         <?php
                         }
                         ?>
@@ -99,7 +102,8 @@ if (isset($_POST['nome'])) {
 
                     <select name="cidade" id="cidade" sel="1">
                         <?php
-                        $query_send_cid = consultaCidade($conect);
+                        $cod_estado = 26;
+                        $query_send_cid = consultaCidade($conect, $cod_estado);
                         while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
                         ?>
                             <option value="<?php echo $show_cidade['IDCIDADE'] ?>"> <?php echo $show_cidade['nomeCidade'] ?> </option>
@@ -232,10 +236,8 @@ include('./include/bottom.php');
         const estado = value;
         console.log(estado)
         $('#cidade').attr('sel', estado);
-        <?php
-        $estado = consultaCidade($conect);
-        ?>
-
+        $('#cidade').prepend('<?php echo "<p>" ?> + estado + <?php "</p>"; ?> ');
+        return estado;
     };
 </script>
 

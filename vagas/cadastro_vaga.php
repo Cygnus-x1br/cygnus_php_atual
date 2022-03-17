@@ -48,7 +48,7 @@ if (isset($_POST['funcao'])) {
                 </div>
                 <select name="cidade" id="">
                     <?php
-                    $query_send_cid = consultaCidade($conect);
+                    $query_send_cid = consultaCidade($conect, $cod_estado);
                     while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
                     ?>
                         <option value="<?php echo $show_cidade['IDCIDADE'] ?>"><?php echo $show_cidade['nomeCidade'] ?></option>

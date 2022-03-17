@@ -37,12 +37,21 @@ function consultaEstado($conect)
     return $query_send_est;
 }
 
-function consultaCidade($conect)
+function consultaCidade($conect, $cod_estado)
 {
-    $consulta_cidade = "SELECT * FROM tb_cidade ORDER BY nomeCidade";
-    $query_send_cid = mysqli_query($conect, $consulta_cidade);
-    if (!$query_send_cid) {
-        die('Falha na conexão');
+
+    if (!$cod_estado) {
+        $consulta_cidade = "SELECT * FROM tb_cidade ORDER BY nomeCidade";
+        $query_send_cid = mysqli_query($conect, $consulta_cidade);
+        if (!$query_send_cid) {
+            die('Falha na conexão');
+        }
+    } else {
+        $consulta_cidade = "SELECT * FROM tb_cidade WHERE ID_ESTADO = $cod_estado ORDER BY nomeCidade";
+        $query_send_cid = mysqli_query($conect, $consulta_cidade);
+        if (!$query_send_cid) {
+            die('Falha na conexão');
+        }
     }
     return $query_send_cid;
 }
@@ -55,4 +64,9 @@ function consultaCliente($conect)
         die('Falha na conexão');
     }
     return $query_send_cli;
+}
+
+function teste($conect, $cod_estado)
+{
+    consultaCidade($conect, $cod_estado);
 }
