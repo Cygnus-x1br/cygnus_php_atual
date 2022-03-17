@@ -12,11 +12,7 @@ include('./include/menu.php');
 $page_link = 'https://cygnusrh.com.br/'
 ?>
 
-
-
 <div class="container">
-
-
 
     <form class="form_email" action="https://formsubmit.co/curriculos@cygnusrh.com.br" method="POST" enctype="multipart/form-data">
         <h1>Envie seu currículo</h1>

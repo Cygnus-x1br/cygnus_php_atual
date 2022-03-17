@@ -1,7 +1,6 @@
 <?php
-
 require_once('./_conexao/conexao.php');
-
+require_once('./php/dbFunctions.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -14,27 +13,13 @@ include('./include/head.php');
 include('./include/menu.php');
 ?>
 
-<?php
-
-// $query_vagas = "SELECT funcao, tipo, localTrab, escolaridade, horario, beneficios, descricao FROM tb_vagas";
-// include('./head.php');
-
-$query_vagas = "SELECT funcao, tipo, c.nomeCidade as cidade, e.siglaEstado as estado, escolaridade, horario, beneficios, descricao, destaque, dataCriacao, DATE_ADD(dataCriacao, INTERVAL 30 DAY) as dataValidade FROM tb_vaga ";
-$query_vagas .= " INNER JOIN tb_cidade AS c ON ID_CIDADE = c.IDCIDADE INNER JOIN tb_estado AS e ON c.ID_ESTADO = e.IDESTADO WHERE fechamento='A' ORDER BY funcao";
-$lista_vagas = mysqli_query($conect, $query_vagas);
-// var_dump($lista_vagas);
-if (!$lista_vagas) {
-    die('Falha na conexao');
-}
-
-?>
-
 <div class="container">
     <section class="conteudo">
         <article class="textos-conteudo">
             <h1>Consulte nossas vagas</h1>
             <!--  -->
             <?php
+            $lista_vagas = dadosVagasAbertas($conect);
             while ($linha = mysqli_fetch_assoc($lista_vagas)) {
                 $funcao = $linha['funcao'];
                 $tipo = $linha['tipo'];

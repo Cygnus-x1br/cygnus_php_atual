@@ -1,16 +1,13 @@
 <?php
 session_start();
 require_once('./_conexao/conexao.php');
+require_once('../php/dbFunctions.php');
+require_once('../php/post_data.php');
 if (!isset($_SESSION["cygnus_login"])) {
     header("location:login.php");
     die;
 };
 
-$consulta_cidade = 'SELECT * FROM tb_cidade ORDER BY nomeCidade';
-$query_send_cid = mysqli_query($conect, $consulta_cidade);
-if (!$query_send_cid) {
-    die('Falha na conexão');
-}
 ?>
 
 <?php
@@ -34,6 +31,7 @@ if (isset($_GET['cliente'])) {
 }
 
 if (isset($_POST['nomeCliente'])) {
+
     if (!empty($_POST['nomeCliente'])) {
         $nomeCliente = $_POST['nomeCliente'];
     } else {
@@ -80,6 +78,7 @@ if (isset($_POST['nomeCliente'])) {
                 <input type="text" name="bairro" placeholder="Bairro" value="<?php echo $bairro ?>" <?php echo $edit ?>>
                 <select name="cidade" id="" <?php echo $edit ?>>
                     <?php
+                    $query_send_cid = consultaCidade($conect);
                     while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
                     ?>
                         <option value="<?php echo $show_cidade['IDCIDADE'] ?>" <?php if ($cidade == $show_cidade['IDCIDADE']) {
@@ -89,10 +88,10 @@ if (isset($_POST['nomeCliente'])) {
                     }
                     ?>
                 </select>
-                <input type="text" name="CNPJ" placeholder="CNPJ" value="<?php echo $CNPJ ?>" <?php echo $edit ?>>
+                <input type="text" class="cnpj" name="CNPJ" placeholder="CNPJ" value="<?php echo $CNPJ ?>" <?php echo $edit ?>>
                 <input type="text" name="contato" placeholder="Contato" value="<?php echo $contato ?>" <?php echo $edit ?>>
                 <input type="text" name="email" placeholder="E-Mail" value="<?php echo $email ?>" <?php echo $edit ?>>
-                <input type="text" name="telefone" placeholder="Telefone" value="<?php echo $telefone ?>" <?php echo $edit ?>>
+                <input type="text" class="tel" name="telefone" placeholder="Telefone" value="<?php echo $telefone ?>" <?php echo $edit ?>>
                 <div class="btn">
                     <?php
                     echo "<a href='./detalha_cliente.php?cliente=$IDCLIENTE &edit= '>Editar</a>";
@@ -111,6 +110,9 @@ if (isset($_POST['nomeCliente'])) {
             <a href="./index.php">Voltar ao Inicio</a>
         </div>
     </div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/jquery.mask.min.js"></script>
+    <script src="../js/comon_jquery.js"></script>
 </body>
 
 </html>

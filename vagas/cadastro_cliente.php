@@ -1,6 +1,9 @@
 <?php
 session_start();
 require_once('./_conexao/conexao.php');
+require_once('../php/dbFunctions.php');
+require_once('../php/post_data.php');
+
 if (!isset($_SESSION["cygnus_login"])) {
     header("location:login.php");
     die;
@@ -8,27 +11,9 @@ if (!isset($_SESSION["cygnus_login"])) {
 ?>
 
 <?php
-$consulta_cidade = 'SELECT * FROM tb_cidade ORDER BY nomeCidade';
-$query_send_cid = mysqli_query($conect, $consulta_cidade);
-if (!$query_send_cid) {
-    die('Falha na conexão');
-}
 
 if (isset($_POST['nomeCliente'])) {
-    if (!empty($_POST['nomeCliente'])) {
-        $nomeCliente = $_POST['nomeCliente'];
-    } else {
-        die('Digite o Nome do Cliente');
-    }
-    $endereco = $_POST['endereco'];
-    $bairro = $_POST['bairro'];
-    $cidade = $_POST['cidade'];
-    $CNPJ = $_POST['CNPJ'];
-    $contato = $_POST['contato'];
-    $email = $_POST['email'];
-    $telefone = $_POST['telefone'];
-    $insere_cliente = "INSERT INTO tb_cliente ";
-    $insere_cliente .= "VALUES(null, '$nomeCliente', '$endereco', '$bairro', '$CNPJ', '$contato', '$email', '$telefone', $cidade)";
+    $insere_cliente = cadastraCliente($_POST);
     $query_send = mysqli_query($conect, $insere_cliente);
 }
 ?>
@@ -56,6 +41,7 @@ if (isset($_POST['nomeCliente'])) {
                 <input type="text" name="bairro" placeholder="Bairro">
                 <select name="cidade" id="">
                     <?php
+                    $query_send_cid = consultaCidade($conect);
                     while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
                     ?>
                         <option value="<?php echo $show_cidade['IDCIDADE'] ?>"><?php echo $show_cidade['nomeCidade'] ?></option>

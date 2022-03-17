@@ -1,5 +1,7 @@
 <?php
 require_once('./_conexao/conexao.php');
+require_once('./php/dbFunctions.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -22,20 +24,7 @@ include('./include/head.php');
 <?php
 include('./include/menu.php');
 ?>
-<?php
 
-$consulta_estado = 'SELECT * FROM tb_estado ORDER BY siglaEstado';
-$query_send_est = mysqli_query($conect, $consulta_estado);
-if (!$query_send_est) {
-    die('Falha na conexão');
-}
-
-$consulta_cidade = "SELECT * FROM tb_cidade ORDER BY nomeCidade";
-$query_send_cid = mysqli_query($conect, $consulta_cidade);
-if (!$query_send_cid) {
-    die('Falha na conexão');
-}
-?>
 <?php
 
 $mensagem = "<div class='container'><section class='conteudo'><h1>CPF já cadastrado</h1><button onclick='goBack()'>Voltar</button></section></div>";
@@ -96,6 +85,7 @@ if (isset($_POST['nome'])) {
                     <label for="">Estado</label>
                     <select name="estado" id="estado" onchange="teste(value)">
                         <?php
+                        $query_send_est = consultaEstado($conect);
                         while ($show_estado = mysqli_fetch_assoc($query_send_est)) {
                         ?>
                             <option value="<?php echo $show_estado['IDESTADO'] ?>"><?php echo $show_estado['siglaEstado'] ?></option>
@@ -107,8 +97,9 @@ if (isset($_POST['nome'])) {
                 <div class="col_1" style="width: 70%;">
                     <label for="">Cidade</label>
 
-                    <select name="cidade" id="">
+                    <select name="cidade" id="cidade" sel="1">
                         <?php
+                        $query_send_cid = consultaCidade($conect);
                         while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
                         ?>
                             <option value="<?php echo $show_cidade['IDCIDADE'] ?>"> <?php echo $show_cidade['nomeCidade'] ?> </option>
@@ -237,10 +228,13 @@ include('./include/bottom.php');
         console.log(curso);
     }
 
-
     function teste(value) {
         const estado = value;
         console.log(estado)
+        $('#cidade').attr('sel', estado);
+        <?php
+        $estado = consultaCidade($conect);
+        ?>
 
     };
 </script>

@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once('./_conexao/conexao.php');
+require_once('../php/dbFunctions.php');
+require_once('../php/post_data.php');
 if (!isset($_SESSION["cygnus_login"])) {
     header("location:login.php");
     die;
@@ -9,53 +11,10 @@ $user = $_SESSION["cygnus_login"];
 ?>
 
 <?php
-$consulta_cliente = 'SELECT * FROM tb_cliente ORDER BY nomeCliente';
-$query_send_cli = mysqli_query($conect, $consulta_cliente);
-if (!$query_send_cli) {
-    die('Falha na conexão');
-}
-$consulta_cidade = 'SELECT * FROM tb_cidade ORDER BY nomeCidade';
-$query_send_cid = mysqli_query($conect, $consulta_cidade);
-if (!$query_send_cid) {
-    die('Falha na conexão');
-}
 
 if (isset($_POST['funcao'])) {
     $user = $_SESSION["cygnus_login"];
-    if (!empty($_POST['funcao'])) {
-        $funcao = $_POST['funcao'];
-    } else {
-        die("<h1>Digite a função da vaga</h1>");
-    }
-    if (!empty($_POST['tipo'])) {
-        $tipo = $_POST['tipo'];
-    } else {
-        die("<h1>Selecione o tipo de vaga</h1>");
-    }
-    if (!empty($_POST['cidade'])) {
-        $cidade = $_POST['cidade'];
-    } else {
-        die("<h1>Digite o local de trabalho</h1>");
-    }
-    $escolaridade = $_POST['escolaridade'];
-    $horario = $_POST['horario'];
-    $salario = $_POST['salario'];
-    $beneficios = $_POST['beneficios'];
-    $descricao = $_POST['descricao'];
-    if (!empty($_POST['cliente'])) {
-        $cliente = $_POST['cliente'];
-    } else {
-        die('Selecione ou cadastre o Cliente');
-    }
-    if ($_POST['destaque'] == 'S') {
-        $destaque = 'S';
-    } else {
-        $destaque = '';
-    };
-    echo $salario;
-
-    $insere_vaga = "INSERT INTO tb_vaga ";
-    $insere_vaga .= "VALUES(null, '$funcao', '$tipo', '$cidade', '$escolaridade', '$horario', '$beneficios', '$descricao', $cliente, now(),'A', null, '$destaque', $salario, $user, $cidade)";
+    $insere_vaga = cadastraVaga($POST, $user, $conect);
     $query_send = mysqli_query($conect, $insere_vaga);
     header("location:listagem_vaga.php");
 }
@@ -89,6 +48,7 @@ if (isset($_POST['funcao'])) {
                 </div>
                 <select name="cidade" id="">
                     <?php
+                    $query_send_cid = consultaCidade($conect);
                     while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
                     ?>
                         <option value="<?php echo $show_cidade['IDCIDADE'] ?>"><?php echo $show_cidade['nomeCidade'] ?></option>
@@ -103,6 +63,7 @@ if (isset($_POST['funcao'])) {
                 <textarea name="descricao" placeholder="Descrição atividades" id=""></textarea>
                 <select name="cliente" id="">
                     <?php
+                    $query_send_cli = consultaCliente($conect);
                     while ($show_cliente = mysqli_fetch_assoc($query_send_cli)) {
                     ?>
                         <option value="<?php echo $show_cliente['IDCLIENTE'] ?>"><?php echo $show_cliente['nomeCliente'] ?></option>

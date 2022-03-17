@@ -46,7 +46,6 @@ include('./include/menu.php');
     include('./include/aside.php');
     ?>
 
-
 </div>
 
 <?php

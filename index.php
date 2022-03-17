@@ -1,6 +1,7 @@
 <?php
 
 require_once('./_conexao/conexao.php');
+require_once('./php/dbFunctions.php');
 
 ?>
 
@@ -14,17 +15,6 @@ include('./include/head.php');
 <?php
 include('./include/menu.php');
 ?>
-<?php
-$query_vagas = "SELECT funcao, tipo, c.nomeCidade as cidade, e.siglaEstado as estado, escolaridade, horario, beneficios, descricao, destaque FROM tb_vaga ";
-$query_vagas .= " INNER JOIN tb_cidade AS c ON ID_CIDADE = c.IDCIDADE INNER JOIN tb_estado AS e ON c.ID_ESTADO = e.IDESTADO WHERE destaque='S' AND fechamento='A' ";
-$query_vagas .= " ORDER BY dataCriacao DESC";
-$lista_vagas = mysqli_query($conect, $query_vagas);
-// var_dump($lista_vagas);
-
-if (!$lista_vagas) {
-    die('Falha na conexao');
-}
-?>
 
 <div class="container">
     <section class='destaque'>
@@ -32,6 +22,7 @@ if (!$lista_vagas) {
             <h1>Vagas em destaque</h1>
             <section class="box-vagas">
                 <?php
+                $lista_vagas = dadosVagasDestaque($conect);
                 while ($linha = mysqli_fetch_assoc($lista_vagas)) {
                     $funcao = $linha['funcao'];
                     $tipo = $linha['tipo'];

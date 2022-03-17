@@ -8,11 +8,6 @@ if (!isset($_SESSION["cygnus_login"])) {
 ?>
 
 <?php
-$consulta_cliente = 'SELECT * FROM tb_cliente';
-$query_send_cli = mysqli_query($conect, $consulta_cliente);
-if (!$query_send_cli) {
-    die('Falha na conexão');
-}
 
 $lista_vaga = "SELECT * FROM tb_vaga ";
 $query_send = mysqli_query($conect, $lista_vaga);

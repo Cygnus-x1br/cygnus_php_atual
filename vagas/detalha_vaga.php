@@ -1,7 +1,8 @@
 <?php
 session_start();
-
 require_once('./_conexao/conexao.php');
+require_once('../php/dbFunctions.php');
+require_once('../php/post_data.php');
 
 if (!isset($_SESSION["cygnus_login"])) {
     header("location:login.php");
@@ -11,16 +12,6 @@ $user = $_SESSION["cygnus_login"];
 ?>
 
 <?php
-$consulta_cliente = 'SELECT * FROM tb_cliente ORDER BY nomeCliente';
-$query_send_cli = mysqli_query($conect, $consulta_cliente);
-if (!$query_send_cli) {
-    die('Falha na conexão');
-}
-$consulta_cidade = 'SELECT * FROM tb_cidade ORDER BY nomeCidade';
-$query_send_cid = mysqli_query($conect, $consulta_cidade);
-if (!$query_send_cid) {
-    die('Falha na conexão');
-}
 
 if (isset($_GET['vaga'])) {
     $cod_vaga = $_GET['vaga'];
@@ -130,6 +121,7 @@ if (isset($_POST['funcao'])) {
                 </div>
                 <select name="cidade" id="" <?php echo $edit ?>>
                     <?php
+                    $query_send_cid = consultaCidade($conect);
                     while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
                     ?>
                         <option value="<?php echo $show_cidade['IDCIDADE'] ?>" <?php if ($cidade == $show_cidade['IDCIDADE']) {
@@ -141,11 +133,12 @@ if (isset($_POST['funcao'])) {
                 </select>
                 <input type="text" name="escolaridade" placeholder="Escolaridade" value="<?php echo $escolaridade ?>" <?php echo $edit ?>>
                 <input type="text" name="horario" placeholder="Horário de trabalho" value="<?php echo $horario ?>" <?php echo $edit ?>>
-                <input type="text" name="salario" placeholder="Salário" value="<?php echo $salario ?>" <?php echo $edit ?>>
+                <input type="text" name="salario" class="valor" placeholder="Salário" value="<?php echo $salario ?>" <?php echo $edit ?>>
                 <input type="text" name="beneficios" placeholder="Beneficios" value="<?php echo $beneficios ?>" <?php echo $edit ?>>
                 <textarea name="descricao" placeholder="Descrição atividades" id="" <?php echo $edit ?>><?php echo $descricao ?></textarea>
                 <select name="cliente" id="" <?php echo $edit ?>>
                     <?php
+                    $query_send_cli = consultaCliente($conect);
                     while ($show_cliente = mysqli_fetch_assoc($query_send_cli)) {
                     ?>
                         <option value="<?php echo $show_cliente['IDCLIENTE'] ?>" <?php if ($cliente == $show_cliente['IDCLIENTE']) {
@@ -213,6 +206,9 @@ if (isset($_POST['funcao'])) {
             <a href="./index.php">Voltar ao Inicio</a>
         </div>
     </div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/jquery.mask.min.js"></script>
+    <script src="../js/comon_jquery.js"></script>
 
 </body>
 

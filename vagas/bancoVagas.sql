@@ -24,17 +24,17 @@ CREATE TABLE tb_cliente (
     bairro VARCHAR(30),
     cidade VARCHAR(30),
     estado CHAR(2),
-    CNPJ CHAR(14),
+    CNPJ VARCHAR(14), --alterar para CHAR(18)
     contato VARCHAR(30),
     email VARCHAR(70),
-    telefone VARCHAR(11)
+    telefone VARCHAR(11) --alterar para CHAR(15)
 );
 
 CREATE TABLE tb_candidato (
     IDCANDIDATO INT PRIMARY KEY AUTO_INCREMENT,
     nomeCandidato VARCHAR(70) NOT NULL,
     email VARCHAR(70),
-    telefone VARCHAR(11)
+    telefone VARCHAR(11) --alterar para CHAR(15)
 );
 
 CREATE TABLE cand_vaga (
@@ -119,14 +119,14 @@ CREATE TABLE tb_area_interesse (
     ID_CANDIDATO INT
 );
 
-ALTER TABLE tb_candidato ADD COLUMN CPF VARCHAR(11) UNIQUE NOT NULL;
+ALTER TABLE tb_candidato ADD COLUMN CPF VARCHAR(11) UNIQUE NOT NULL; --alterar para VARCHAR(14)
 ALTER TABLE tb_candidato ADD COLUMN endereco VARCHAR(100);
 ALTER TABLE tb_candidato ADD COLUMN ID_CIDADE INT;
-ALTER TABLE tb_candidato ADD COLUMN ID_AREA INT;
+ALTER TABLE tb_candidato ADD COLUMN ID_AREA INT; --REMOVER
 ALTER TABLE tb_candidato ADD COLUMN funcao VARCHAR(60);
 /*campo curriculo em princípio armazena caminho para o arquivo. posso mudar futuramente para blob para armazenar o arquivo */
 ALTER TABLE tb_candidato ADD COLUMN curriculo VARCHAR(100);
--- ALTER TABLE tb_candidato ADD COLUMN outra_cidade VARCHAR(60);
+-- ALTER TABLE tb_candidato ADD COLUMN outra_cidade VARCHAR(60); REMOVER
 
 -- ALTER TABLE tb_area_interesse DROP FOREIGN KEY FK_CANDIDATO_AREA;
 
@@ -135,6 +135,11 @@ FOREIGN KEY(ID_AREA) REFERENCES tb_area_interesse(IDAREA);
 
 ALTER TABLE tb_candidato ADD CONSTRAINT FK_CANDIDATO_CIDADE
 FOREIGN KEY(ID_CIDADE) REFERENCES tb_cidade(IDCIDADE);
+
+ALTER TABLE tb_candidato MODIFY CPF VARCHAR(14);
+ALTER TABLE tb_candidato MODIFY telefone VARCHAR(15);
+ALTER TABLE tb_cliente MODIFY CNPJ VARCHAR(18);
+ALTER TABLE tb_cliente MODIFY telefone VARCHAR(15);
 
 /* FIM DAS ALTERAÇÕES */
 
