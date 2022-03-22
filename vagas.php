@@ -8,6 +8,54 @@ require_once('./php/dbFunctions.php');
 include('./include/head.php');
 ?>
 <title>Cygnus * Consulte nossas vagas de emprego</title>
+<?php
+$lista_vagas = dadosVagasAbertas($conect);
+while ($linha = mysqli_fetch_assoc($lista_vagas)) {
+    $funcao = $linha['funcao'];
+    $tipo = $linha['tipo'];
+    $cidade = $linha['cidade'];
+    $estado = $linha['estado'];
+    $localTrab = $cidade . ' - ' . $estado;
+    $escolaridade = $linha['escolaridade'];
+    $horario = $linha['horario'];
+    $beneficios = $linha['beneficios'];
+    $descricao = $linha['descricao'];
+    $dataCriacao = $linha['dataCriacao'];
+    $dataValidade = $linha['dataValidade'];
+
+
+?>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org/",
+            "@type": "JobPosting",
+            "title": "<?php echo $funcao ?>",
+            "description": "<?php echo '<p>' . $descricao . '</p>' ?>",
+            "datePosted": "<?php echo $dataCriacao ?>",
+            "validThrough": "<?php echo $dataValidade ?>",
+            "jobLocation": {
+                "@type": "Place",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "<?php echo $cidade ?>",
+                    "addressRegion": "<?php echo $estado ?>",
+                    "addressCountry": "BR"
+                }
+            },
+            "employmentType": "FULL_TIME",
+            "hiringOrganization": {
+                "@type": "Organization",
+                "name": "Cygnus Recursos Humanos",
+                "sameAs": "https://cygnusrh.com.br"
+            }
+        }
+    </script>
+
+<?php
+}
+?>
+
 </head>
 <?php
 include('./include/menu.php');
@@ -53,31 +101,7 @@ include('./include/menu.php');
                 </p>
                 <div class="underline"></div>
 
-                <script type="application/ld+json">
-                    {
-                        "@context": "https://schema.org/",
-                        "@type": "JobPosting",
-                        "title": "<?php echo $funcao ?>",
-                        "description": "<?php echo '<p>' . $descricao . '</p>' ?>",
-                        "datePosted": "<?php echo $dataCriacao ?>",
-                        "validThrough": "<?php echo $dataValidade ?>",
-                        "jobLocation": {
-                            "@type": "Place",
-                            "address": {
-                                "@type": "PostalAddress",
-                                "addressLocality": "<?php echo $cidade ?>",
-                                "addressRegion": "<?php echo $estado ?>",
-                                "addressCountry": "BR"
-                            }
-                        },
-                        "employmentType": "FULL_TIME",
-                        "hiringOrganization": {
-                            "@type": "Organization",
-                            "name": "Cygnus Recursos Humanos",
-                            "sameAs": "https://cygnusrh.com.br"
-                        }
-                    }
-                </script>
+
 
             <?php
             }
