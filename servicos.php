@@ -5,6 +5,7 @@
 include('./include/head.php');
 ?>
 <title>Cygnus * Nossos serviços, Temporários, Terceirizados, Seleção</title>
+<link rel="canonical" href="https://cygnusrh.com.br/servicos.php">
 </head>
 <?php
 include('./include/menu.php');

@@ -8,6 +8,7 @@ require_once('./php/dbFunctions.php');
 include('./include/head.php');
 ?>
 <title>Cygnus * Consulte nossas vagas de emprego</title>
+<link rel="canonical" href="https://cygnusrh.com.br/vagas.php">
 <?php
 $lista_vagas = dadosVagasAbertas($conect);
 while ($linha = mysqli_fetch_assoc($lista_vagas)) {
