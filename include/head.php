@@ -44,4 +44,3 @@
       <link rel="stylesheet" href="./css/style.css?v1.3" />
       <link rel="stylesheet" href="./css/media_queries.css?v1.2" />
       <script src="https://kit.fontawesome.com/f8deb99a48.js" crossorigin="anonymous"></script>
-      <link rel="stylesheet" href="./css/media_queries.css?v1.2" />

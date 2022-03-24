@@ -23,36 +23,46 @@ while ($linha = mysqli_fetch_assoc($lista_vagas)) {
     $descricao = $linha['descricao'];
     $dataCriacao = $linha['dataCriacao'];
     $dataValidade = $linha['dataValidade'];
+    $salario = $linha['salario'];
 
 
 ?>
+    <?php
+    if ($dataValidade < date("Y-m-d")) {
 
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org/",
-            "@type": "JobPosting",
-            "title": "<?php echo $funcao ?>",
-            "description": "<?php echo '<p>' . $descricao . '</p>' ?>",
-            "datePosted": "<?php echo $dataCriacao ?>",
-            "validThrough": "<?php echo $dataValidade ?>",
-            "jobLocation": {
-                "@type": "Place",
-                "address": {
-                    "@type": "PostalAddress",
-                    "addressLocality": "<?php echo $cidade ?>",
-                    "addressRegion": "<?php echo $estado ?>",
-                    "addressCountry": "BR"
+
+    ?>
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org/",
+                "@type": "JobPosting",
+                "title": "<?php echo $funcao ?>",
+                "description": "<?php echo '<p>' . $descricao . '</p>' ?>",
+                "datePosted": "<?php echo $dataCriacao ?>",
+                "validThrough": "<?php echo $dataValidade ?>",
+                "jobLocation": {
+                    "@type": "Place",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "streetAddress": " ",
+                        "addressLocality": "<?php echo $cidade ?>",
+                        "addressRegion": "<?php echo $estado ?>",
+                        "postalCode": " ",
+                        "addressCountry": "BR"
+                    }
+                },
+                "employmentType": "FULL_TIME",
+                "hiringOrganization": {
+                    "@type": "Organization",
+                    "name": "Cygnus Recursos Humanos",
+                    "sameAs": "https://cygnusrh.com.br"
                 }
-            },
-            "employmentType": "FULL_TIME",
-            "hiringOrganization": {
-                "@type": "Organization",
-                "name": "Cygnus Recursos Humanos",
-                "sameAs": "https://cygnusrh.com.br"
-            }
-        }
-    </script>
 
+            }
+        </script>
+    <?php
+    }
+    ?>
 <?php
 }
 ?>
