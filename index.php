@@ -11,6 +11,7 @@ require_once('./php/dbFunctions.php');
 include('./include/head.php');
 ?>
 <title>Cygnus Recursos Humanos * Portal de empregos e serviços</title>
+<link rel="canonical" href="https://cygnusrh.com.br/">
 </head>
 <?php
 include('./include/menu.php');

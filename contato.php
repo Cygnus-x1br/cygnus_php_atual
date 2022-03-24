@@ -5,6 +5,7 @@
 include('./include/head.php');
 ?>
 <title>Cygnus * Entre em contato</title>
+<link rel="canonical" href="https://cygnusrh.com.br/contato.php">
 </head>
 <?php
 include('./include/menu.php');
