@@ -44,22 +44,33 @@ while ($linha = mysqli_fetch_assoc($lista_vagas)) {
                     "@type": "Place",
                     "address": {
                         "@type": "PostalAddress",
-                        "streetAddress": " ",
+                        "streetAddress": "Rua Padre Jaime",
                         "addressLocality": "<?php echo $cidade ?>",
                         "addressRegion": "<?php echo $estado ?>",
-                        "postalCode": " ",
+                        "postalCode": "13843085",
                         "addressCountry": "BR"
                     }
                 },
                 "employmentType": "FULL_TIME",
-                "hiringOrganization": {
-                    "@type": "Organization",
-                    "name": "Cygnus Recursos Humanos",
-                    "sameAs": "https://cygnusrh.com.br"
+                "hiringOrganization": "confidential",
+                "baseSalary": {
+                    "@type": "MonetaryAmount",
+                    "currency": "BRL",
+                    "value": {
+                        "@type": "QuantitativeValue",
+                        "value": <?php echo $salario ?>,
+                        "unitText": "MONTH"
+                    }
                 }
 
             }
         </script>
+        <!-- "hiringOrganization": {
+                    "@type": "Organization",
+                    "name": "Cygnus Recursos Humanos",
+                    "sameAs": "https://cygnusrh.com.br"
+        } -->
+
     <?php
     }
     ?>
