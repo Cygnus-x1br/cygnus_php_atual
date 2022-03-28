@@ -18,17 +18,18 @@ include('./include/menu.php');
 $page_link = 'https://cygnusrh.com.br/'
 ?>
 
-<?php
-if (isset($_POST['name'])) {
-    if (enviarMensagem($_POST)) {
-        header("location:sucesso.php");
-    } else {
-        die("Erro no envio.");
-    }
-}
-?>
 
 <div class="container">
+    <?php
+    if (isset($_POST['name'])) {
+        if (enviarMensagem($_POST)) {
+            //header("location:sucesso.php");
+            echo '<script>location.replace("sucesso.php");</script>';
+        } else {
+            die("Erro no envio.");
+        }
+    }
+    ?>
 
     <form class="form_email" action="fale_conosco.php" method="POST" enctype="multipart/form-data">
         <h1>Fale conosco</h1>
@@ -49,7 +50,10 @@ if (isset($_POST['name'])) {
 <?php
 include('./include/bottom.php');
 ?>
+<script src="./js/jquery-3.6.0.min.js"></script>
+<script>
 
+</script>
 </body>
 
 </html>
