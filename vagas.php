@@ -28,7 +28,7 @@ while ($linha = mysqli_fetch_assoc($lista_vagas)) {
 
 ?>
     <?php
-    if ($dataValidade < date("Y-m-d")) {
+    if ($dataValidade > date("Y-m-d")) {
 
 
     ?>
