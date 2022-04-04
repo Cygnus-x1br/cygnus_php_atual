@@ -50,10 +50,7 @@ $page_link = 'https://cygnusrh.com.br/'
 <?php
 include('./include/bottom.php');
 ?>
-<script src="./js/jquery-3.6.0.min.js"></script>
-<script>
 
-</script>
 </body>
 
 </html>
