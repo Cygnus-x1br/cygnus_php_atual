@@ -11,6 +11,7 @@ require_once('./php/dbFunctions.php');
 include('./include/head.php');
 ?>
 <title>Cygnus Recursos Humanos * Portal de empregos e serviços</title>
+<meta name="description" content="Veja nossas vagas de emprego em destaque. Cygnus Recursos Humanos. Agencia de empregos em Mogi Guaçu. Trabalhamos vagas de emprego em toda a região da Baixa Mogiana (Mogi Guaçu, Mogi Mirim, Itapira, Socorro, Jacutinga, Estiva Gerbi) e ABC Paulista" />
 <link rel="canonical" href="https://cygnusrh.com.br/">
 </head>
 <?php

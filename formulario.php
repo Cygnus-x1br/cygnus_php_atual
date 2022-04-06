@@ -5,7 +5,9 @@
 include('./include/head.php');
 ?>
 <title>Cygnus * Envie seu curriculo</title>
+<meta name="description" content="Cygnus Recursos Humanos. Por aqui voce pode encaminhar seu curriculo para se candidatar a uma de nossas vagas." />
 <link rel="stylesheet" href="./css/form.css" />
+<link rel="canonical" href="https://cygnusrh.com.br/formulario.php">
 </head>
 <?php
 include('./include/menu.php');
