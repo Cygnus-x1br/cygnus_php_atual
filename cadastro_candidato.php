@@ -84,13 +84,14 @@ if (isset($_POST['nome'])) {
             <div class="col_2">
                 <div class="col_1" style="width: 20%;">
                     <label for="">Estado</label>
-                    <select name="estado" id="estado" onchange="teste(value)">
+                    <select name="estado" id="estado">
+                        <option value=""></option>
                         <?php
                         $query_send_est = consultaEstado($conect);
                         while ($show_estado = mysqli_fetch_assoc($query_send_est)) {
                         ?>
                             <option value="<?php echo $show_estado['IDESTADO']; ?>" <?php if ($show_estado['IDESTADO'] == 26) {
-                                                                                        echo ' selected';
+                                                                                        // echo ' selected';
                                                                                     } ?>> <?php echo $show_estado['siglaEstado'] ?></option>
                         <?php
                         }
@@ -100,16 +101,8 @@ if (isset($_POST['nome'])) {
                 <div class="col_1" style="width: 70%;">
                     <label for="">Cidade</label>
 
-                    <select name="cidade" id="cidade" sel="1">
-                        <?php
-                        $cod_estado = 26;
-                        $query_send_cid = consultaCidade($conect, $cod_estado);
-                        while ($show_cidade = mysqli_fetch_assoc($query_send_cid)) {
-                        ?>
-                            <option value="<?php echo $show_cidade['IDCIDADE'] ?>"> <?php echo $show_cidade['nomeCidade'] ?> </option>
-                        <?php
-                        }
-                        ?>
+                    <select name="cidade" id="cidade">
+
                     </select>
                 </div>
             </div>
@@ -151,7 +144,7 @@ if (isset($_POST['nome'])) {
                 </div>
 
                 <h4>Histórico Profissional</h4>
-                <fieldset class="historico">
+                <fieldset class="historico" id="histProf">
                     <div class="col">
 
                         <label for="">De:</label>
@@ -173,7 +166,7 @@ if (isset($_POST['nome'])) {
                         <input type="text" name='cargo'>
                     </div>
                     <div class="right-btn">
-                        <button class="btn_add" onclick="adicionaLinha()">Adicionar</button>
+                        <button class="btn_add" id="btnHistProf">Adicionar</button>
                     </div>
                 </fieldset>
 
@@ -226,19 +219,24 @@ include('./include/bottom.php');
 <script src="./js/jquery-3.6.0.min.js"></script>
 <script src="./js/jquery.mask.min.js"></script>
 <script src="./js/comon_jquery.js"></script>
+<script src="./js/ajax.js"></script>
 <script>
     function adicionaLinha() {
         let curso = $('curso');
         console.log(curso);
     }
 
-    function teste(value) {
-        const estado = value;
-        console.log(estado)
-        $('#cidade').attr('sel', estado);
-        $('#cidade').prepend('<?php echo "<p>" ?> + estado + <?php "</p>"; ?> ');
-        return estado;
-    };
+
+
+    $('select#estado').change(function(e) {
+        var selEstadoID = ($(this).val());
+        listaCidades(selEstadoID);
+    })
+
+    $('button#btnHistProf').click(function(e) {
+        e.preventDefault();
+        console.log(e);
+    })
 </script>
 
 </body>
