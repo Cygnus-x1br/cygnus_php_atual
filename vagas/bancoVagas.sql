@@ -219,3 +219,7 @@ INSERT INTO tb_cidade VALUES(null, 'Mogi Mirim', 24);
 INSERT INTO tb_cidade VALUES(null, 'Mogi Guaçu', 24);
 INSERT INTO tb_cidade VALUES(null, 'Itapira', 24);
 INSERT INTO tb_cidade VALUES(null, 'Santo André', 24);
+
+INSERT INTO tb_cliente VALUES(null,"Andromeda Terceirização de Mão de Obra e Servicos Ltda","Rua Marcelino Dantas, 117","Vila Alzira","17.237.955/0001-60","Jean","jeanmarcel@cygnusrh.com.br","1144383622",4);
+
+INSERT INTO tb_vaga VALUES(null, 'Contato Comercial', 'T', 'Santo André', 'Ensino Médio Completo', 'Seg. a Sex. 07:30 as 17:00', 'Vale-Trasnporte, Vale-Refeição e Vale-Alimentação', 'Experiência em vendas na área de serviços, atendimento a clientes, Habilitação Cat B. Desejável conhecimentos na área de Recursos Humanos', 1, now(),'A', null,null,null,1,4);
