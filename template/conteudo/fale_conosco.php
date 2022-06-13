@@ -1,4 +1,7 @@
 <?php
+
+require_once('../php/emailFunction.php');
+
 if (isset($_POST['name'])) {
     if (enviarMensagem($_POST)) {
         //header("location:sucesso.php");

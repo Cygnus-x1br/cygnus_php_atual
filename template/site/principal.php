@@ -35,7 +35,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="keywords" content="Empregos, vagas,Cygnus RH, trabalho temporário, terceirização, empregos Mogi Guaçu, empregos Itapira, empregos Socorro, empregos Mogi Mirim" />
-    <meta name="description" content="Cygnus Recursos Humanos. Agencia de empregos em Mogi Guaçu. Trabalhamos vagas de emprego em toda a região da Baixa Mogiana (Mogi Guaçu, Mogi Mirim, Itapira, Socorro, Jacutinga, Estiva Gerbi) e ABC Paulista" />
+    <!-- <meta name="description" content="Cygnus Recursos Humanos. Agencia de empregos em Mogi Guaçu. Trabalhamos vagas de emprego em toda a região da Baixa Mogiana (Mogi Guaçu, Mogi Mirim, Itapira, Socorro, Jacutinga, Estiva Gerbi) e ABC Paulista" /> -->
     <meta name="author" content="Jean Marcel Fiad" />
     <meta name="robots" content="index, follow" />
 
@@ -48,12 +48,19 @@
     <link rel="stylesheet" href="../css/media_queries.css?v1.2" />
     <link rel="stylesheet" href="../css/form.css" />
     <script src="https://kit.fontawesome.com/f8deb99a48.js" crossorigin="anonymous"></script>
-
-    <!-- home start -->
-    <title>Cygnus Recursos Humanos * Portal de empregos e serviços</title>
-    <meta name="description" content="Veja nossas vagas de emprego em destaque. Cygnus Recursos Humanos. Agencia de empregos em Mogi Guaçu. Trabalhamos vagas de emprego em toda a região da Baixa Mogiana (Mogi Guaçu, Mogi Mirim, Itapira, Socorro, Jacutinga, Estiva Gerbi) e ABC Paulista" />
-    <link rel="canonical" href="https://cygnusrh.com.br/">
-    <!-- home end -->
+    <?php
+    if (!empty($meta)) {
+        include __DIR__ . '/../metatags/' . $meta;
+    } else {
+    ?>
+        <!-- home start -->
+        <title>Sem Meta Cygnus Recursos Humanos * Portal de empregos e serviços</title>
+        <meta name="description" content="Veja nossas vagas de emprego em destaque. Cygnus Recursos Humanos. Agencia de empregos em Mogi Guaçu. Trabalhamos vagas de emprego em toda a região da Baixa Mogiana (Mogi Guaçu, Mogi Mirim, Itapira, Socorro, Jacutinga, Estiva Gerbi) e ABC Paulista" />
+        <link rel="canonical" href="https://cygnusrh.com.br/">
+        <!-- home end -->
+    <?php
+    }
+    ?>
 
 </head>
 
@@ -72,18 +79,18 @@
     <section class="navbar">
         <nav>
             <ul>
-                <li><a href="./index.php">Home</a></li>
+                <li><a href="./">Home</a></li>
                 <div class="blind-line"></div>
-                <li><a href="./vagas.php">Vagas</a></li>
+                <li><a href="./vagas">Vagas</a></li>
                 <div class="blind-line"></div>
-                <li><a href="./sobre.php">Sobre</a></li>
+                <li><a href="./sobre">Sobre</a></li>
                 <div class="blind-line"></div>
-                <li><a href="./servicos.php">Serviços</a></li>
+                <li><a href="./servicos">Serviços</a></li>
                 <div class="blind-line"></div>
-                <li><a href="./contato.php">Contato</a></li>
+                <li><a href="./contato">Contato</a></li>
                 <div class="blind-line"></div>
                 <li>
-                    <a class="curriculo" href="../formulario.php">Envie seu curriculo</a>
+                    <a class="curriculo" href="./formulario">Envie seu curriculo</a>
                 </li>
             </ul>
         </nav>
@@ -94,7 +101,7 @@
         <!-- Conteudo -->
         <?php
 
-        require __DIR__ . '/' . $conteudo;
+        require __DIR__ . '/../conteudo/' . $conteudo;
 
         ?>
 
@@ -103,7 +110,7 @@
             <h4>Redes:</h4>
             <div class="redes-icons">
                 <a href="https://www.facebook.com/pontual.empregos/" target="_blank"><i class="fab fa-facebook-square"></i></a>
-                <a href="../contato.php"><i class="fas fa-envelope"></i></a>
+                <a href="./contato"><i class="fas fa-envelope"></i></a>
                 <a href="https://www.linkedin.com/in/cygnus-presta%C3%A7%C3%A3o-de-servi%C3%A7os-em-rh-a919a818b/" target="_blank"><i class="fab fa-linkedin"></i></a>
             </div>
         </aside>
@@ -111,7 +118,7 @@
 
     <?php
     if (!empty($conteudo2)) {
-        include __DIR__ . '/' . $conteudo2;
+        include __DIR__ . '/../conteudo/' . $conteudo2;
     }
     ?>
 

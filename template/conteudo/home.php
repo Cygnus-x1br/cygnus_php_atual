@@ -1,6 +1,6 @@
 <?php
 require_once('../_conexao/conexao.php');
-require_once('../php/dbFunctions.php');
+require_once('../app/Model/dbFunctions.php');
 
 ?>
 <section class='destaque'>
