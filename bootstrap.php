@@ -23,8 +23,15 @@ if ($path === '/vagas' || $path == '/vagas.php') {
 } elseif ($path === '/contato' || $path == '/contato.php') {
     $conteudo = 'contato.php';
     require __DIR__ . '/template/site/principal.php';
+} elseif ($path === '/fale_conosco' || $path == '/fale_conosco.php') {
+    $conteudo = 'fale_conosco.php';
+    require __DIR__ . '/template/site/principal.php';
+} elseif ($path === '/contato' || $path == '/contato.php') {
+    $conteudo = 'contato.php';
+    require __DIR__ . '/template/site/principal.php';
 } else {
     $conteudo = 'home.php';
+    $conteudo2 = 'noticias.php';
     require __DIR__ . '/template/site/principal.php';
 }
 

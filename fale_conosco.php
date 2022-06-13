@@ -6,7 +6,6 @@ include('./php/emailFunction.php');
 include('./include/head.php');
 ?>
 <title>Cygnus * Fale Conosco</title>
-
 <link rel="stylesheet" href="./css/form.css" />
 <style>
     html {
