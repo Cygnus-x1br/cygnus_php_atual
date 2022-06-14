@@ -69,6 +69,6 @@ while ($linha = mysqli_fetch_assoc($lista_vagas)) {
 
         <h3>Não encontrou o que queria?</h3>
 
-        <a class="curriculo-back" href="./formulario.php">Deixe seu curriculo para uma próxima oportunidade</a>
+        <a class="curriculo-back" href="./formulario">Deixe seu curriculo para uma próxima oportunidade</a>
     </article>
 </section>

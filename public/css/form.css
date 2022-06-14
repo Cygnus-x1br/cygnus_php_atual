@@ -43,6 +43,10 @@ input[type='file'] {
   text-align: center;
 }
 
+.form_email button{
+  border: none;
+}
+
 .file {
   font-size: 12px;
   margin-top: 0;

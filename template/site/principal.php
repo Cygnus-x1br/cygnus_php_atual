@@ -44,9 +44,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" /> -->
-    <link rel="stylesheet" href="../css/style.css?v1.3" />
-    <link rel="stylesheet" href="../css/media_queries.css?v1.2" />
-    <link rel="stylesheet" href="../css/form.css" />
+    <link rel="stylesheet" href="./css/style.css?v1.3" />
+    <link rel="stylesheet" href="./css/media_queries.css?v1.2" />
+    <link rel="stylesheet" href="./css/form.css" />
     <script src="https://kit.fontawesome.com/f8deb99a48.js" crossorigin="anonymous"></script>
     <?php
     if (!empty($meta)) {
@@ -69,9 +69,9 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMSHV97" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <header>
-        <img class="logo-img" src="../images/CisneOriginalSemFundo.png" alt="Logotipo Cisne" />
+        <img class="logo-img" src="./images/CisneOriginalSemFundo.png" alt="Logotipo Cisne" />
         <div class="flex-container-col">
-            <img class="texto-logo" src="../images/Logo_texto.png" alt="Logotipo texto Cygnus" />
+            <img class="texto-logo" src="./images/Logo_texto.png" alt="Logotipo texto Cygnus" />
         </div>
         <div></div>
     </header>
