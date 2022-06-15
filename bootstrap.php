@@ -15,12 +15,15 @@ if ($path === '/vagas') {
     $conteudo = 'vagas.php';
     require __DIR__ . '/template/site/principal.php';
 } elseif ($path === '/sobre') {
+    $meta = 'meta_sobre.php';
     $conteudo = 'sobre.php';
     require __DIR__ . '/template/site/principal.php';
 } elseif ($path === '/servicos') {
+    $meta = 'meta_servicos.php';
     $conteudo = 'servicos.php';
     require __DIR__ . '/template/site/principal.php';
 } elseif ($path === '/contato') {
+    $meta = 'meta_contato.php';
     $conteudo = 'contato.php';
     require __DIR__ . '/template/site/principal.php';
 } elseif ($path === '/fale_conosco') {
