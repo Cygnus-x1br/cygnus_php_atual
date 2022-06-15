@@ -1,15 +1,8 @@
 <?php
-
-$request = $_SERVER['PHP_SELF'];
-
 $path = $_SERVER['PATH_INFO'] ?? '/';
-
-
-// if (strlen($path) > 1) {
-//     $_SERVER['REQUEST_URI'] = rtrim($_SERVER['REQUEST_URI'], '/');
-//     $path = rtrim($path, '/');
-// }
-
+if (strlen($path) > 1) {
+    $path = rtrim($path, '/');
+}
 $path = explode('.php', $path);
 $path = $path[0];
 // echo '<pre>';
@@ -39,8 +32,9 @@ if ($path === '/vagas') {
 } elseif ($path === '/sucesso') {
     $conteudo = 'sucesso.php';
     require __DIR__ . '/template/site/principal.php';
-} elseif ($path === '/vagas/') {
-    header('Location:/vagas/login.php');
+    // } elseif ($path === '/vagas/') {
+    //     echo __DIR__ . '\vagas\login.php';
+    //     header('Location:' . $_SERVER['PATH_INFO'] . '/vagas/login.php');
 } else {
     $meta = 'meta_home.php';
     $conteudo = 'home.php';

@@ -1,8 +1,6 @@
 <?php
 $page_link = 'https://cygnusrh.com.br/'
 ?>
-
-
 <form class="form_email" action="https://formsubmit.co/curriculos@cygnusrh.com.br" method="POST" enctype="multipart/form-data">
     <h1>Envie seu currículo</h1>
     <input type="hidden" name="_next" value="<?php echo $page_link ?>sucesso.php" />

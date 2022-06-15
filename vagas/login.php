@@ -1,6 +1,9 @@
 <?php
 session_start();
-require_once('./_conexao/conexao.php');
+echo '<pre>';
+print_r($_SERVER);
+echo '</pre>';
+require_once('../_conexao/conexao.php');
 if (isset($_POST['usuario'])) {
     $usuario = $_POST["usuario"];
     $senha = $_POST["senha"];
@@ -29,7 +32,7 @@ if (isset($_POST['usuario'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../vagas/css/style.css">
+    <link rel="stylesheet" href="./vagas/css/style.css">
 </head>
 
 <body>
