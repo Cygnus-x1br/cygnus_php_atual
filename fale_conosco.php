@@ -20,17 +20,17 @@ $page_link = 'https://cygnusrh.com.br/'
 ?>
 
 
-<div class="container">
-    <?php
-    if (isset($_POST['name'])) {
-        if (enviarMensagem($_POST)) {
-            //header("location:sucesso.php");
-            echo '<script>location.replace("sucesso.php");</script>';
-        } else {
-            die("Erro no envio.");
-        }
+<?php
+if (isset($_POST['name'])) {
+    if (enviarMensagem($_POST)) {
+        //header("location:sucesso.php");
+        echo '<script>location.replace("sucesso.php");</script>';
+    } else {
+        die("Erro no envio.");
     }
-    ?>
+}
+?>
+<div class="container">
 
     <form class="form_email" action="fale_conosco.php" method="POST" enctype="multipart/form-data">
         <h1>Fale conosco</h1>
