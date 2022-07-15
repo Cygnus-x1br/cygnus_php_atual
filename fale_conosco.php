@@ -15,12 +15,6 @@ include('./include/head.php');
 </style>
 </head>
 <?php
-include('./include/menu.php');
-$page_link = 'https://cygnusrh.com.br/'
-?>
-
-
-<?php
 if (isset($_POST['name'])) {
     if (enviarMensagem($_POST)) {
         //header("location:sucesso.php");
@@ -30,6 +24,12 @@ if (isset($_POST['name'])) {
     }
 }
 ?>
+<?php
+include('./include/menu.php');
+$page_link = 'https://cygnusrh.com.br/'
+?>
+
+
 <div class="container">
 
     <form class="form_email" action="fale_conosco.php" method="POST" enctype="multipart/form-data">
