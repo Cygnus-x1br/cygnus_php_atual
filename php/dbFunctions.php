@@ -1,5 +1,6 @@
 <?php
 
+/* Models Vagas*/
 function dadosVagasDestaque($conect)
 {
     $query_vagas = "SELECT funcao, tipo, c.nomeCidade as cidade, e.siglaEstado as estado, escolaridade, horario, beneficios, descricao, destaque FROM tb_vaga ";
@@ -14,6 +15,7 @@ function dadosVagasDestaque($conect)
     return $lista_vagas;
 }
 
+/* Models Vagas*/
 function dadosVagasAbertas($conect)
 {
     $query_vagas = "SELECT funcao, tipo, c.nomeCidade as cidade, e.siglaEstado as estado, escolaridade, horario, beneficios, descricao, destaque, dataCriacao, DATE_ADD(dataCriacao, INTERVAL 30 DAY) as dataValidade, salario FROM tb_vaga ";
